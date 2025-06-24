@@ -2,9 +2,22 @@
 =================================================================
   My Portfolio - Main Stylesheet
   Author: Shyam Sundar Paul
-  Description: This file contains all the primary styles for the
-               portfolio, including typography, layout, navigation,
-               and component styling.
+  
+  TABLE OF CONTENTS
+  ---------------------------------------------------
+  1.  FONT IMPORT & ROOT VARIABLES
+  2.  DARK MODE THEME
+  3.  GENERAL & RESET STYLES
+  4.  NAVIGATION (Desktop & Hamburger)
+  5.  PROFILE SECTION
+  6.  ABOUT SECTION
+  7.  EXPERIENCE SECTION
+  8.  PROJECTS SECTION
+  9.  CONTACT SECTION
+  10. FOOTER
+  11. COMPONENTS (Buttons & Icons)
+  12. ANIMATIONS & EFFECTS
+  13. PRELOADER
 =================================================================
 */
 
@@ -13,17 +26,19 @@
 /* ! 1. FONT IMPORT & ROOT VARIABLES                       */
 /* ======================================================= */
 
+/* Import the 'Poppins' font family from Google Fonts. */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
+/* Root variables allow for easy theme management and consistency. */
 :root {
   /* Colors */
-  --color-primary-bg: #f8f9fa;
-  --color-text-dark: #333;
-  --color-text-light: #555;
-  --color-white: #fff;
-  --color-border: #ddd;
+  --color-primary-bg: #f8f9fa; /* Light background color */
+  --color-text-dark: #333;      /* Dark text for high contrast */
+  --color-text-light: #555;     /* Lighter text for subheadings */
+  --color-white: #fff;          /* Used for card backgrounds */
+  --color-border: #ddd;         /* A soft border color */
 
-  /* Animation */
+  /* Animation Timings & Easing */
   --wipe-duration: 0.8s;
   --wipe-ease: cubic-bezier(0.65, 0, 0.35, 1);
   --transition-speed-fast: 300ms;
@@ -33,11 +48,11 @@
 
 
 /* ======================================================= */
-/* ! 1a. DARK MODE THEME                                   */
+/* ! 2. DARK MODE THEME                                    */
 /* ======================================================= */
 
+/* When the body has the 'data-theme="dark"' attribute, these variables override the default ones. */
 body[data-theme="dark"] {
-  /* Dark Mode Colors */
   --color-primary-bg: #1a1a1a;
   --color-text-dark: #f0f0f0;
   --color-text-light: #a0a0a0;
@@ -45,25 +60,23 @@ body[data-theme="dark"] {
   --color-border: #444;
 }
 
-/* Specific Dark Mode Button Adjustments */
+/* --- Specific Dark Mode Adjustments --- */
 body[data-theme="dark"] .btn-color-1,
 body[data-theme="dark"] .btn-color-2:hover {
   background-color: #f0f0f0; /* Light button background */
-  color: #1a1a1a; /* Dark button text */
+  color: #1a1a1a;           /* Dark button text */
 }
 
 body[data-theme="dark"] .btn-color-2 {
-  border: 1px solid #f0f0f0;
+  border-color: #f0f0f0;
   color: #f0f0f0;
 }
 
-/* Adjust project container for dark mode */
 body[data-theme="dark"] .color-container {
   background: #2a2a2a;
   border-color: #444;
 }
 
-/* Adjust hamburger menu background */
 body[data-theme="dark"] .menu-links {
     background-color: #2a2a2a;
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
@@ -71,19 +84,19 @@ body[data-theme="dark"] .menu-links {
 
 
 /* ======================================================= */
-/* ! 2. GENERAL & RESET STYLES                             */
+/* ! 3. GENERAL & RESET STYLES                             */
 /* ======================================================= */
 
 * {
   /* Reset default browser spacing for a consistent look. */
   margin: 0;
   padding: 0;
-  /* Use a more intuitive box model for sizing. */
+  /* Use a more intuitive box model for element sizing. */
   box-sizing: border-box;
 }
 
 html {
-  /* Enables smooth scrolling when a user clicks an anchor link. */
+  /* Enables smooth scrolling when a user clicks an anchor link (e.g., in the nav). */
   scroll-behavior: smooth;
 }
 
@@ -100,7 +113,6 @@ p {
 a {
   color: var(--color-text-dark);
   text-decoration: none;
-  /* A subtle transition for all links. */
   transition: all var(--transition-speed-fast) ease;
 }
 
@@ -118,7 +130,7 @@ section {
 
 
 /* ======================================================= */
-/* ! 3. NAVIGATION (DESKTOP & HAMBURGER)                   */
+/* ! 4. NAVIGATION (DESKTOP & HAMBURGER)                   */
 /* ======================================================= */
 
 /* --- SHARED NAVIGATION STYLES --- */
@@ -144,7 +156,7 @@ nav {
 }
 
 .logo:hover {
-  transform: scale(1.05);
+  transform: scale(1.05); /* Slight zoom effect on hover. */
 }
 
 /* --- DESKTOP NAVIGATION --- */
@@ -153,13 +165,12 @@ nav {
   padding-bottom: 0.5rem;
 }
 
-/* Vertically centers the theme toggle icon in the desktop nav */
 #desktop-nav .nav-links li:last-child {
   display: flex;
   align-items: center;
 }
 
-/* Underline effect on hover */
+/* Underline effect on hover for desktop links. */
 .nav-links a::after {
   content: "";
   position: absolute;
@@ -177,7 +188,7 @@ nav {
 
 /* --- HAMBURGER MENU (MOBILE) --- */
 #hamburger-nav {
-  display: none; /* Hidden by default, shown in media queries */
+  display: none; /* Hidden by default, shown by media queries on smaller screens. */
 }
 
 .hamburger-menu {
@@ -207,7 +218,7 @@ nav {
   right: 0;
   background-color: var(--color-white);
   width: fit-content;
-  max-height: 0;
+  max-height: 0; /* Initially hidden */
   overflow: hidden;
   transition: all 0.3s var(--transition-timing-function);
   z-index: 100;
@@ -233,26 +244,26 @@ nav {
   margin: 10px auto;
 }
 
-/* These 'open' classes are toggled by JavaScript to show/hide the menu and animate the icon */
+/* These 'open' classes are toggled by JavaScript to show/hide the menu and animate the icon. */
 .menu-links.open {
-  max-height: 300px;
+  max-height: 300px; /* Reveal the menu. */
 }
 
 .hamburger-icon.open span:first-child {
-  transform: rotate(45deg) translate(10px, 5px);
+  transform: rotate(45deg) translate(10px, 5px); /* Forms the 'X'. */
 }
 
 .hamburger-icon.open span:nth-child(2) {
-  opacity: 0;
+  opacity: 0; /* Hides the middle bar. */
 }
 
 .hamburger-icon.open span:last-child {
-  transform: rotate(-45deg) translate(10px, -5px);
+  transform: rotate(-45deg) translate(10px, -5px); /* Forms the 'X'. */
 }
 
 
 /* ======================================================= */
-/* ! 4. PROFILE SECTION                                    */
+/* ! 5. PROFILE SECTION                                    */
 /* ======================================================= */
 
 #profile {
@@ -267,8 +278,7 @@ nav {
   height: 400px;
   width: 400px;
   margin: auto 0;
-  /* Initial state for fade-in animation */
-  opacity: 0;
+  opacity: 0; /* Initial state for animation. */
   transform: translateY(20px);
   animation: fade-in-up var(--transition-speed-slow) var(--transition-timing-function) forwards;
 }
@@ -301,15 +311,14 @@ nav {
   justify-content: center;
   margin-top: 1rem;
   gap: 1rem;
-  /* Initial state for a delayed fade-in animation */
-  opacity: 0;
+  opacity: 0; /* Initial state for a delayed animation. */
   transform: translateY(20px);
   animation: fade-in-up var(--transition-speed-slow) var(--transition-timing-function) 0.4s forwards;
 }
 
 
 /* ======================================================= */
-/* ! 5. ABOUT SECTION                                      */
+/* ! 6. ABOUT SECTION                                      */
 /* ======================================================= */
 
 #about {
@@ -345,7 +354,7 @@ nav {
 }
 
 .details-container:hover {
-  transform: translateY(-5px); /* Subtle lift effect on hover */
+  transform: translateY(-5px); /* Subtle lift effect on hover. */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
@@ -362,7 +371,7 @@ nav {
 
 
 /* ======================================================= */
-/* ! 6. EXPERIENCE SECTION                                 */
+/* ! 7. EXPERIENCE SECTION                                 */
 /* ======================================================= */
 
 #experience {
@@ -404,7 +413,7 @@ article .icon {
 
 
 /* ======================================================= */
-/* ! 7. PROJECTS SECTION                                   */
+/* ! 8. PROJECTS SECTION                                   */
 /* ======================================================= */
 
 #projects {
@@ -429,7 +438,7 @@ article .icon {
 
 
 /* ======================================================= */
-/* ! 8. CONTACT SECTION                                    */
+/* ! 9. CONTACT SECTION                                    */
 /* ======================================================= */
 
 #contact {
@@ -472,7 +481,7 @@ article .icon {
 
 
 /* ======================================================= */
-/* ! 9. FOOTER                                             */
+/* ! 10. FOOTER                                            */
 /* ======================================================= */
 
 footer {
@@ -486,7 +495,7 @@ footer p {
 
 
 /* ======================================================= */
-/* ! 10. COMPONENTS (BUTTONS & ICONS)                      */
+/* ! 11. COMPONENTS (BUTTONS & ICONS)                      */
 /* ======================================================= */
 
 /* --- ICONS --- */
@@ -497,7 +506,7 @@ footer p {
 }
 
 .icon:hover {
-  transform: scale(1.2);
+  transform: scale(1.2); /* Zoom effect for all icons. */
 }
 
 /* --- BUTTONS --- */
@@ -514,6 +523,7 @@ footer p {
   width: 8rem;
   border-radius: 2rem;
   border: none;
+  cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -522,12 +532,14 @@ footer p {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Primary Button Style */
 .btn-color-1,
 .btn-color-2:hover {
   background-color: var(--color-text-dark);
   color: var(--color-white);
 }
 
+/* Secondary/Outlined Button Style */
 .btn-color-2 {
   background: none;
   border: 1px solid var(--color-text-dark);
@@ -539,8 +551,9 @@ footer p {
   border-color: var(--color-text-dark);
 }
 
+
 /* ======================================================= */
-/* ! 11. ANIMATIONS & EFFECTS                              */
+/* ! 12. ANIMATIONS & EFFECTS                              */
 /* ======================================================= */
 
 /* --- SCROLL REVEAL --- */
@@ -551,7 +564,7 @@ footer p {
               transform var(--transition-speed-slow) var(--transition-timing-function);
 }
 
-/* This class is added by JavaScript when the element is visible */
+/* This class is added by JavaScript when the element is visible in the viewport. */
 .scroll-reveal.visible {
   opacity: 1;
   transform: translateY(0);
@@ -581,21 +594,20 @@ footer p {
 #role-text {
   display: inline-block;
   position: relative;
-  /* Tell the browser to optimize for this property change */
-  will-change: clip-path;
+  will-change: clip-path; /* Performance optimization for the animation. */
 }
 
-/* State classes added by JavaScript */
+/* State classes added by JavaScript to trigger animations. */
 .hiding #role-text {
   animation: wipe-out var(--wipe-duration) var(--wipe-ease) forwards;
 }
 
 .revealing #role-text {
-  clip-path: inset(0 100% 0 0); /* Hides the text before animating in */
+  clip-path: inset(0 100% 0 0); /* Hides the text before animating in. */
   animation: wipe-in var(--wipe-duration) var(--wipe-ease) forwards;
 }
 
-/* Keyframes for the animation */
+/* Keyframes for the wipe animation. */
 @keyframes wipe-out {
   from { clip-path: inset(0 0 0 0); }
   to   { clip-path: inset(0 100% 0 0); }
@@ -604,4 +616,75 @@ footer p {
 @keyframes wipe-in {
   from { clip-path: inset(0 100% 0 0); }
   to   { clip-path: inset(0 0 0 0); }
+}
+
+
+/* ======================================================= */
+/* ! 13. PRELOADER                                         */
+/* ======================================================= */
+
+.gooey {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 142px;
+  height: 40px;
+  margin: -20px 0 0 -71px;
+  background: var(--color-primary-bg);
+  filter: contrast(20);
+  z-index: 9999;
+}
+.gooey .dot {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 12px;
+  left: 15px;
+  filter: blur(4px);
+  background: var(--color-text-dark);
+  border-radius: 50%;
+  transform: translateX(0);
+  animation: dot 2.8s infinite;
+}
+.gooey .dots {
+  transform: translateX(0);
+  margin-top: 12px;
+  margin-left: 31px;
+  animation: dots 2.8s infinite;
+}
+.gooey .dots span {
+  display: block;
+  float: left;
+  width: 16px;
+  height: 16px;
+  margin-left: 16px;
+  filter: blur(4px);
+  background: var(--color-text-dark);
+  border-radius: 50%;
+}
+
+/* Preloader Keyframes */
+@-moz-keyframes dot { 50% { transform: translateX(96px); } }
+@-webkit-keyframes dot { 50% { transform: translateX(96px); } }
+@-o-keyframes dot { 50% { transform: translateX(96px); } }
+@keyframes dot { 50% { transform: translateX(96px); } }
+@-moz-keyframes dots { 50% { transform: translateX(-31px); } }
+@-webkit-keyframes dots { 50% { transform: translateX(-31px); } }
+@-o-keyframes dots { 50% { transform: translateX(-31px); } }
+@keyframes dots { 50% { transform: translateX(-31px); } }
+
+/* --- PRELOADER & MAIN CONTENT VISIBILITY --- */
+#preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-out, visibility 0s 0.5s;
+}
+#main-content {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+#main-content.visible {
+  visibility: visible;
+  opacity: 1;
 }

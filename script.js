@@ -2,8 +2,15 @@
 =================================================================
   My Portfolio - Main JavaScript File
   Description: This file handles all the interactive functionality
-               for the portfolio website, including the mobile
-               navigation, animated text, and scroll animations.
+               for the portfolio website.
+
+  TABLE OF CONTENTS
+  ---------------------------------------------------
+  I.    MOBILE NAVIGATION (HAMBURGER MENU)
+  II.   DYNAMIC ROLE TEXT ANIMATION
+  III.  SCROLL REVEAL ANIMATION
+  IV.   DARK MODE / THEME TOGGLER
+  V.    PRELOADER LOGIC
 =================================================================
 */
 
@@ -22,7 +29,8 @@ function toggleMenu() {
   const icon = document.querySelector(".hamburger-icon");
 
   // The .toggle() method is a shortcut to add a class if it's not there,
-  // or remove it if it is. The 'open' class triggers the CSS animations.
+  // or remove it if it is. The 'open' class in our CSS contains all the
+  // styles to show the menu and animate the icon into an 'X'.
   menu.classList.toggle("open");
   icon.classList.toggle("open");
 }
@@ -36,20 +44,20 @@ function toggleMenu() {
  * through different job titles in the profile section.
  * ===================================================================
  */
-// We wrap this in an event listener to make sure the HTML is fully loaded
-// before we try to find and manipulate its elements.
+// We wrap this in a 'DOMContentLoaded' event listener to ensure the HTML is fully
+// loaded before we try to find and manipulate its elements.
 document.addEventListener("DOMContentLoaded", () => {
   
   // --- Configuration ---
   const roles = ["Business Analyst", "Data Analyst"]; // The list of roles to display.
-  const pauseBetweenRoles = 2000; // The wait time in milliseconds (2 seconds).
+  const pauseBetweenRoles = 2000; // The wait time between roles in milliseconds (2 seconds).
   let currentRoleIndex = 0; // We start with the first role in the array.
 
   // --- Get HTML Elements ---
   const roleTextContainer = document.getElementById("role-text-container");
   const roleText = document.getElementById("role-text");
 
-  // If for some reason these elements don't exist, stop the script to prevent errors.
+  // If for some reason these elements don't exist, log an error and stop the script.
   if (!roleTextContainer || !roleText) {
     console.error("Role text animation elements not found!");
     return;
@@ -59,44 +67,44 @@ document.addEventListener("DOMContentLoaded", () => {
    * This is the main function that controls the animation loop.
    */
   function cycleRoles() {
-    // 1. Start hiding the current text by adding the 'hiding' class.
+    // 1. HIDE: Start hiding the current text by adding the 'hiding' class.
     //    This triggers the 'wipe-out' CSS animation.
     roleTextContainer.classList.add("hiding");
 
-    // 2. We need to wait for the 'wipe-out' animation to finish before changing the text.
-    //    We use an event listener that fires exactly once for this.
+    // 2. WAIT: We need to wait for the 'wipe-out' animation to finish before changing the text.
+    //    We use an event listener that fires exactly once for this animation.
     roleTextContainer.addEventListener('animationend', function onWipeOutEnd(event) {
-      // Make sure we're reacting to the correct animation.
+      // Ensure we're reacting to the correct animation.
       if (event.animationName !== 'wipe-out') return;
 
-      // This listener has done its job, so we remove it to avoid it firing again.
+      // This listener has done its job, so we remove it to prevent it from firing multiple times.
       this.removeEventListener('animationend', onWipeOutEnd);
 
-      // 3. Now that the text is hidden, update it to the next role.
-      //    The '%' (modulo) operator ensures we loop back to the start of the array.
+      // 3. UPDATE: Now that the text is hidden, update it to the next role.
+      //    The '%' (modulo) operator ensures the index loops back to 0 after the last role.
       currentRoleIndex = (currentRoleIndex + 1) % roles.length;
       roleText.textContent = roles[currentRoleIndex];
 
-      // 4. Reveal the new text by swapping the 'hiding' class for 'revealing'.
+      // 4. REVEAL: Reveal the new text by swapping the 'hiding' class for 'revealing'.
       //    This triggers the 'wipe-in' CSS animation.
       roleTextContainer.classList.remove("hiding");
       roleTextContainer.classList.add("revealing");
 
-      // 5. Wait for the 'wipe-in' animation to finish.
+      // 5. WAIT AGAIN: Wait for the 'wipe-in' animation to finish.
       this.addEventListener('animationend', function onWipeInEnd(event) {
         if (event.animationName !== 'wipe-in') return;
         
-        // Clean up the listener and the class.
+        // Clean up the listener and the revealing class.
         this.removeEventListener('animationend', onWipeInEnd);
         roleTextContainer.classList.remove("revealing");
 
-        // 6. Pause for a moment, then start the whole cycle over again.
+        // 6. REPEAT: Pause for a moment, then start the whole cycle over again by calling this function recursively.
         setTimeout(cycleRoles, pauseBetweenRoles);
       });
     });
   }
 
-  // Start the first animation cycle after a short initial delay.
+  // Start the very first animation cycle after a short initial delay.
   setTimeout(cycleRoles, 1000);
 });
 
@@ -110,36 +118,38 @@ document.addEventListener("DOMContentLoaded", () => {
  * ===================================================================
  */
 
-// --- Configuration ---
+// --- Observer Configuration ---
 const scrollRevealOptions = {
   // The animation will trigger when 20% of the element is visible in the viewport.
   threshold: 0.2, 
 };
 
 /**
- * This is the "callback" function that runs whenever an observed
- * element's visibility changes.
+ * This is the "callback" function that the Intersection Observer runs whenever
+ * an observed element's visibility changes.
  * @param {IntersectionObserverEntry[]} entries - A list of elements being observed.
  * @param {IntersectionObserver} observer - The observer instance itself.
  */
 const scrollRevealCallback = (entries, observer) => {
   entries.forEach((entry) => {
-    // If the element is intersecting the viewport, make it visible.
+    // If the element is intersecting (i.e., visible in) the viewport...
     if (entry.isIntersecting) {
+      // ...add the 'visible' class to trigger the fade-in animation.
       entry.target.classList.add("visible");
     } 
-    // Otherwise, hide it again so the animation can trigger on the next scroll.
+    // Otherwise (if it's not visible)...
     else {
+      // ...remove the class so the animation can trigger again if the user scrolls back up.
       entry.target.classList.remove("visible");
     }
   });
 };
 
-// --- Initialization ---
+// --- Observer Initialization ---
 // Create the observer instance with our callback function and options.
 const observer = new IntersectionObserver(scrollRevealCallback, scrollRevealOptions);
 
-// Find all elements on the page that we want to animate.
+// Find all elements on the page that have the 'scroll-reveal' class.
 const elementsToReveal = document.querySelectorAll(".scroll-reveal");
 
 // Tell the observer to start watching each of these elements.
@@ -153,47 +163,78 @@ elementsToReveal.forEach((element) => {
  * IV. DARK MODE / THEME TOGGLER
  *
  * Purpose: To switch between a light and dark theme and save the
- * user's preference in their browser's local storage.
+ * user's preference in their browser for future visits.
  * ===================================================================
  */
 document.addEventListener("DOMContentLoaded", () => {
+  // Get the toggle buttons and all icons that need to change.
   const themeToggleDesktop = document.getElementById("theme-toggle-desktop");
   const themeToggleMobile = document.getElementById("theme-toggle-mobile");
   const themeIcons = [themeToggleDesktop, themeToggleMobile];
   const allIcons = document.querySelectorAll('img[data-light-src]');
 
-  // Function to apply the correct theme (dark/light)
+  /**
+   * Applies the selected theme to the page.
+   * @param {string} theme - The theme to apply ('dark' or 'light').
+   */
   const applyTheme = (theme) => {
+    // 1. Set the 'data-theme' attribute on the body. CSS uses this to switch variables.
     document.body.setAttribute('data-theme', theme);
 
-    // Update the toggle icon
+    // 2. Update the main theme toggle icon source.
     const toggleIconSrc = theme === 'dark' ? './assets/theme-dark.png' : './assets/theme_light.png';
     themeIcons.forEach(icon => {
         if (icon) icon.src = toggleIconSrc;
     });
 
-    // Update all other icons on the page
+    // 3. Update all other icons on the page based on their data attributes.
     allIcons.forEach(icon => {
         const newSrc = theme === 'dark' ? icon.getAttribute('data-dark-src') : icon.getAttribute('data-light-src');
         if (newSrc) icon.src = newSrc;
     });
     
-    // Save the user's preference
+    // 4. Save the user's preference in their browser's local storage.
     localStorage.setItem('theme', theme);
   };
 
-  // The function to handle the click event
+  /**
+   * Handles the click event on the theme toggle buttons.
+   */
   const toggleTheme = () => {
     const currentTheme = document.body.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     applyTheme(newTheme);
   };
 
-  // Add click listeners to both toggle buttons
+  // Add click event listeners to both the desktop and mobile toggle buttons.
   if (themeToggleDesktop) themeToggleDesktop.addEventListener("click", toggleTheme);
   if (themeToggleMobile) themeToggleMobile.addEventListener("click", toggleTheme);
 
-  // Check for saved theme in local storage on page load
-  const savedTheme = localStorage.getItem('theme') || 'light'; // Default to light
+  // On page load, check for a saved theme in local storage. Default to 'light' if none is found.
+  const savedTheme = localStorage.getItem('theme') || 'light';
   applyTheme(savedTheme);
+});
+
+
+/**
+ * ===================================================================
+ * V. PRELOADER LOGIC
+ *
+ * Purpose: Hides the preloader and reveals the main content once
+ * all page assets (images, scripts, etc.) have finished loading.
+ * ===================================================================
+ */
+window.addEventListener('load', () => {
+  const preloader = document.getElementById('preloader');
+  const mainContent = document.getElementById('main-content');
+
+  if (preloader) {
+    // Add the 'hidden' class to trigger the preloader's fade-out animation.
+    preloader.classList.add('hidden');
+  }
+
+  if (mainContent) {
+    // Add the 'visible' class to trigger the main content's fade-in animation.
+    mainContent.classList.add('visible');
+  }
 });
