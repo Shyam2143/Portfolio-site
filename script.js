@@ -124,14 +124,13 @@ const scrollRevealOptions = {
  */
 const scrollRevealCallback = (entries, observer) => {
   entries.forEach((entry) => {
-    // Is the element currently intersecting with the viewport?
+    // If the element is intersecting the viewport, make it visible.
     if (entry.isIntersecting) {
-      // If yes, add the 'visible' class to trigger the CSS transition.
       entry.target.classList.add("visible");
-      
-      // Since we only want the animation to happen once, we can stop
-      // observing the element after it has become visible.
-      observer.unobserve(entry.target);
+    } 
+    // Otherwise, hide it again so the animation can trigger on the next scroll.
+    else {
+      entry.target.classList.remove("visible");
     }
   });
 };
@@ -168,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.setAttribute('data-theme', theme);
 
     // Update the toggle icon
-    const toggleIconSrc = theme === 'dark' ? './assets/theme-dark.png' : './assets/theme-light.png';
+    const toggleIconSrc = theme === 'dark' ? './assets/theme-dark.png' : './assets/theme_light.png';
     themeIcons.forEach(icon => {
         if (icon) icon.src = toggleIconSrc;
     });
