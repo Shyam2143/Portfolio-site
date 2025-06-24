@@ -31,6 +31,16 @@
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <!-- THEME TOGGLE FOR DESKTOP -->
+                <li>
+                    <img id="theme-toggle-desktop" 
+                         class="icon" 
+                         src="./assets/theme_light.png" 
+                         data-light-src="./assets/theme_light.png"
+                         data-dark-src="./assets/theme_dark.png"
+                         alt="Toggle theme" 
+                         style="width: 28px; height: 28px;">
+                </li>
             </ul>
         </div>
     </nav>
@@ -53,6 +63,16 @@
                 <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
                 <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
                 <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+                <!-- THEME TOGGLE FOR MOBILE -->
+                <li>
+                    <img id="theme-toggle-mobile" 
+                         class="icon" 
+                         src="./assets/theme_light.png" 
+                         data-light-src="./assets/theme_light.png"
+                         data-dark-src="./assets/theme_dark.png"
+                         alt="Toggle theme" 
+                         style="width: 28px; height: 28px;">
+                </li>
             </div>
         </div>
     </nav>
@@ -82,8 +102,8 @@
                 </button>
             </div>
             <div id="socials-container">
-                <img src="./assets/linkedin.png" alt="My LinkedIn profile" class="icon" onclick="location.href='https://www.linkedin.com/in/shyam-sundar-paul-51a928216/'" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=LI';" />
-                <img src="./assets/github.png" alt="My Github profile" class="icon" onclick="location.href='https://github.com/Shyam2143'" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=GH';" />
+                <img data-light-src="./assets/linkedin_light.png" data-dark-src="./assets/linkedin_dark.png" src="./assets/linkedin_light.png" alt="My LinkedIn profile" class="icon" onclick="location.href='https://www.linkedin.com/in/shyam-sundar-paul-51a928216/'" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=LI';" />
+                <img data-light-src="./assets/github_light.png" data-dark-src="./assets/github_dark.png" src="./assets/github_light.png" alt="My Github profile" class="icon" onclick="location.href='https://github.com/Shyam2143'" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=GH';" />
             </div>
         </div>
     </section>
@@ -102,13 +122,13 @@
                 <div class="about-containers">
                     <!-- Experience Box -->
                     <div class="details-container">
-                        <img src="./assets/experience.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=Exp';" />
+                        <img data-light-src="./assets/experience_light.png" data-dark-src="./assets/experience_dark.png" src="./assets/experience_light.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=Exp';" />
                         <h3>Experience</h3>
                         <p>6+ Months <br />Business Analyst Intern</p>
                     </div>
                     <!-- Education Box -->
                     <div class="details-container">
-                        <img src="./assets/education.png" alt="Education icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=Edu';" />
+                        <img data-light-src="./assets/education_light.png" data-dark-src="./assets/education_dark.png" src="./assets/education_light.png" alt="Education icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=Edu';" />
                         <h3>Education</h3>
                         <p>MBA. Supply Chain Analytics <br />MS. Computer Science</p>
                     </div>
@@ -126,7 +146,7 @@
                 </div>
             </div>
         </div>
-        <img src="./assets/arrow.png" alt="Arrow icon pointing down to next section" class="icon arrow" onclick="location.href='./#experience'" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=V';" />
+        <img data-light-src="./assets/arrow_light.png" data-dark-src="./assets/arrow_dark.png" src="./assets/arrow_light.png" alt="Arrow icon pointing down to next section" class="icon arrow" onclick="location.href='./#experience'" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=V';" />
     </section>
 
     <!-- ======================================================= -->
@@ -142,42 +162,42 @@
                     <h2 class="experience-sub-title">Data Analyst</h2>
                     <div class="article-container">
                         <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
+                            <img data-light-src="./assets/checkmark_light.png" data-dark-src="./assets/checkmark_dark.png" src="./assets/checkmark_light.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
                             <div>
                                 <h3>Python</h3>
                                 <p>Experienced</p>
                             </div>
                         </article>
                         <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
+                            <img data-light-src="./assets/checkmark_light.png" data-dark-src="./assets/checkmark_dark.png" src="./assets/checkmark_light.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
                             <div>
                                 <h3>SQL</h3>
                                 <p>Experienced</p>
                             </div>
                         </article>
                         <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
+                            <img data-light-src="./assets/checkmark_light.png" data-dark-src="./assets/checkmark_dark.png" src="./assets/checkmark_light.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
                             <div>
                                 <h3>R</h3>
                                 <p>Intermediate</p>
                             </div>
                         </article>
                         <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
+                            <img data-light-src="./assets/checkmark_light.png" data-dark-src="./assets/checkmark_dark.png" src="./assets/checkmark_light.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
                             <div>
                                 <h3>HTML</h3>
                                 <p>Intermediate</p>
                             </div>
                         </article>
                         <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
+                            <img data-light-src="./assets/checkmark_light.png" data-dark-src="./assets/checkmark_dark.png" src="./assets/checkmark_light.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
                             <div>
                                 <h3>Pandas</h3>
                                 <p>Experienced</p>
                             </div>
                         </article>
                         <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
+                            <img data-light-src="./assets/checkmark_light.png" data-dark-src="./assets/checkmark_dark.png" src="./assets/checkmark_light.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
                             <div>
                                 <h3>NumPy</h3>
                                 <p>Experienced</p>
@@ -190,28 +210,28 @@
                     <h2 class="experience-sub-title">Business Competencies</h2>
                     <div class="article-container">
                         <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
+                            <img data-light-src="./assets/checkmark_light.png" data-dark-src="./assets/checkmark_dark.png" src="./assets/checkmark_light.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
                             <div>
                                 <h3>Statistical Modeling</h3>
                                 <p>Basic</p>
                             </div>
                         </article>
                         <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
+                            <img data-light-src="./assets/checkmark_light.png" data-dark-src="./assets/checkmark_dark.png" src="./assets/checkmark_light.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
                             <div>
                                 <h3>Consumer Behavior Analysis</h3>
                                 <p>Intermediate</p>
                             </div>
                         </article>
                         <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
+                            <img data-light-src="./assets/checkmark_light.png" data-dark-src="./assets/checkmark_dark.png" src="./assets/checkmark_light.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
                             <div>
                                 <h3>Supply Chain Analytics</h3>
                                 <p>Intermediate</p>
                             </div>
                         </article>
                         <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
+                            <img data-light-src="./assets/checkmark_light.png" data-dark-src="./assets/checkmark_dark.png" src="./assets/checkmark_light.png" alt="Experience icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
                             <div>
                                 <h3>PowerPoint</h3>
                                 <p>Experienced</p>
@@ -221,7 +241,7 @@
                 </div>
             </div>
         </div>
-        <img src="./assets/arrow.png" alt="Arrow icon pointing down to next section" class="icon arrow" onclick="location.href='./#projects'" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=V';" />
+        <img data-light-src="./assets/arrow_light.png" data-dark-src="./assets/arrow_dark.png" src="./assets/arrow_light.png" alt="Arrow icon pointing down to next section" class="icon arrow" onclick="location.href='./#projects'" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=V';" />
     </section>
 
     <!-- ======================================================= -->
@@ -279,7 +299,7 @@
                 </div>
             </div>
         </div>
-        <img src="./assets/arrow.png" alt="Arrow icon pointing down to next section" class="icon arrow" onclick="location.href='./#contact'" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=V';" />
+        <img data-light-src="./assets/arrow_light.png" data-dark-src="./assets/arrow_dark.png" src="./assets/arrow_light.png" alt="Arrow icon pointing down to next section" class="icon arrow" onclick="location.href='./#contact'" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=V';" />
     </section>
 
     <!-- ======================================================= -->
@@ -290,11 +310,11 @@
         <h1 class="title">Contact Me</h1>
         <div class="contact-info-upper-container">
             <div class="contact-info-container">
-                <img src="./assets/email.png" alt="Email icon" class="icon contact-icon email-icon" onerror="this.onerror=null;this.src='https://placehold.co/40x40/f0f0f0/333?text=@';" />
+                <img data-light-src="./assets/email_light.png" data-dark-src="./assets/email_dark.png" src="./assets/email_light.png" alt="Email icon" class="icon contact-icon email-icon" onerror="this.onerror=null;this.src='https://placehold.co/40x40/f0f0f0/333?text=@';" />
                 <p><a href="mailto:Shyam@dataanalysts.in">Shyam@dataanalysts.in</a></p>
             </div>
             <div class="contact-info-container">
-                <img src="./assets/linkedin.png" alt="LinkedIn icon" class="icon contact-icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=LI';" />
+                <img data-light-src="./assets/linkedin_light.png" data-dark-src="./assets/linkedin_dark.png" src="./assets/linkedin_light.png" alt="LinkedIn icon" class="icon contact-icon" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=LI';" />
                 <p><a href="https://www.linkedin.com/in/shyam-sundar-paul-51a928216/">LinkedIn</a></p>
             </div>
         </div>

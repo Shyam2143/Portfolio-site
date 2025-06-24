@@ -147,3 +147,54 @@ const elementsToReveal = document.querySelectorAll(".scroll-reveal");
 elementsToReveal.forEach((element) => {
   observer.observe(element);
 });
+
+
+/**
+ * ===================================================================
+ * IV. DARK MODE / THEME TOGGLER
+ *
+ * Purpose: To switch between a light and dark theme and save the
+ * user's preference in their browser's local storage.
+ * ===================================================================
+ */
+document.addEventListener("DOMContentLoaded", () => {
+  const themeToggleDesktop = document.getElementById("theme-toggle-desktop");
+  const themeToggleMobile = document.getElementById("theme-toggle-mobile");
+  const themeIcons = [themeToggleDesktop, themeToggleMobile];
+  const allIcons = document.querySelectorAll('img[data-light-src]');
+
+  // Function to apply the correct theme (dark/light)
+  const applyTheme = (theme) => {
+    document.body.setAttribute('data-theme', theme);
+
+    // Update the toggle icon
+    const toggleIconSrc = theme === 'dark' ? './assets/theme-dark.png' : './assets/theme-light.png';
+    themeIcons.forEach(icon => {
+        if (icon) icon.src = toggleIconSrc;
+    });
+
+    // Update all other icons on the page
+    allIcons.forEach(icon => {
+        const newSrc = theme === 'dark' ? icon.getAttribute('data-dark-src') : icon.getAttribute('data-light-src');
+        if (newSrc) icon.src = newSrc;
+    });
+    
+    // Save the user's preference
+    localStorage.setItem('theme', theme);
+  };
+
+  // The function to handle the click event
+  const toggleTheme = () => {
+    const currentTheme = document.body.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    applyTheme(newTheme);
+  };
+
+  // Add click listeners to both toggle buttons
+  if (themeToggleDesktop) themeToggleDesktop.addEventListener("click", toggleTheme);
+  if (themeToggleMobile) themeToggleMobile.addEventListener("click", toggleTheme);
+
+  // Check for saved theme in local storage on page load
+  const savedTheme = localStorage.getItem('theme') || 'light'; // Default to light
+  applyTheme(savedTheme);
+});

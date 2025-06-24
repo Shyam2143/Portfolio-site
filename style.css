@@ -33,6 +33,44 @@
 
 
 /* ======================================================= */
+/* ! 1a. DARK MODE THEME                                   */
+/* ======================================================= */
+
+body[data-theme="dark"] {
+  /* Dark Mode Colors */
+  --color-primary-bg: #1a1a1a;
+  --color-text-dark: #f0f0f0;
+  --color-text-light: #a0a0a0;
+  --color-white: #2a2a2a;
+  --color-border: #444;
+}
+
+/* Specific Dark Mode Button Adjustments */
+body[data-theme="dark"] .btn-color-1,
+body[data-theme="dark"] .btn-color-2:hover {
+  background-color: #f0f0f0; /* Light button background */
+  color: #1a1a1a; /* Dark button text */
+}
+
+body[data-theme="dark"] .btn-color-2 {
+  border: 1px solid #f0f0f0;
+  color: #f0f0f0;
+}
+
+/* Adjust project container for dark mode */
+body[data-theme="dark"] .color-container {
+  background: #2a2a2a;
+  border-color: #444;
+}
+
+/* Adjust hamburger menu background */
+body[data-theme="dark"] .menu-links {
+    background-color: #2a2a2a;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+
+/* ======================================================= */
 /* ! 2. GENERAL & RESET STYLES                             */
 /* ======================================================= */
 
@@ -115,6 +153,12 @@ nav {
   padding-bottom: 0.5rem;
 }
 
+/* Vertically centers the theme toggle icon in the desktop nav */
+#desktop-nav .nav-links li:last-child {
+  display: flex;
+  align-items: center;
+}
+
 /* Underline effect on hover */
 .nav-links a::after {
   content: "";
@@ -182,6 +226,11 @@ nav {
 
 .menu-links li {
   list-style: none;
+}
+
+.menu-links > li > .icon {
+  display: block;
+  margin: 10px auto;
 }
 
 /* These 'open' classes are toggled by JavaScript to show/hide the menu and animate the icon */
