@@ -1,0 +1,167 @@
+/*
+=================================================================
+  My Portfolio - Media Queries
+  Description: This file contains all the responsive design rules.
+               It adjusts the layout for different screen sizes,
+               ensuring the site looks great on desktops, tablets,
+               and mobile phones.
+=================================================================
+*/
+
+
+/* ======================================================= */
+/* ! FOR LARGE LAPTOPS & SMALLER DESKTOPS                  */
+/* (Screens up to 1400px wide)                           */
+/* ======================================================= */
+
+@media screen and (max-width: 1400px) {
+  /* Adjusts the profile section to give it more breathing room. */
+  #profile {
+    height: 83vh;
+    margin-bottom: 6rem;
+  }
+
+  /* Allows content blocks to stack vertically if they run out of space. */
+  .about-containers {
+    flex-wrap: wrap;
+  }
+}
+
+
+/* ======================================================= */
+/* ! FOR TABLETS & SMALL LAPTOPS                           */
+/* (Screens up to 1200px wide)                           */
+/* ======================================================= */
+
+@media screen and (max-width: 1200px) {
+  /* Hide the full-width desktop navigation... */
+  #desktop-nav {
+    display: none;
+  }
+
+  /* ...and show the compact hamburger navigation instead. */
+  #hamburger-nav {
+    display: flex;
+  }
+
+  /* Add some top margin to the experience section for better spacing. */
+  #experience,
+  .experience-details-container {
+    margin-top: 2rem;
+  }
+
+  /* Switch from a side-by-side layout to a stacked, single-column layout. */
+  #profile,
+  .section-container {
+    display: block;
+  }
+
+  /* The down arrows aren't necessary in a single-column layout. */
+  .arrow {
+    display: none;
+  }
+
+  /* Make sections fit their content's height instead of a fixed viewport height. */
+  section,
+  .section-container {
+    height: fit-content;
+  }
+
+  /* Reduce side margins to give content more space on smaller screens. */
+  section {
+    margin: 0 5%;
+  }
+
+  /* Center the profile picture and adjust its size. */
+  .section__pic-container {
+    width: 275px;
+    height: 275px;
+    margin: 0 auto 2rem;
+  }
+
+  .about-containers {
+    margin-top: 0;
+  }
+}
+
+
+/* ======================================================= */
+/* ! FOR MOBILE PHONES                                     */
+/* (Screens up to 600px wide)                            */
+/* ======================================================= */
+
+@media screen and (max-width: 600px) {
+  /* Adjust heights for a more compact view. */
+  #contact,
+  footer {
+    height: 40vh;
+  }
+
+  #profile {
+    height: 83vh;
+    margin-bottom: 0;
+  }
+
+  /* Allow containers with multiple items (like buttons) to wrap onto new lines. */
+  .about-containers,
+  .contact-info-upper-container,
+  .btn-container {
+    flex-wrap: wrap;
+  }
+
+  /* Remove margin from contact info items to save space. */
+  .contact-info-container {
+    margin: 0;
+  }
+
+  /* Reduce font sizes for better readability on small screens. */
+  .contact-info-container p,
+  .nav-links li a {
+    font-size: 1rem;
+  }
+
+  article {
+    font-size: 1rem;
+  }
+
+  .experience-sub-title {
+    font-size: 1.25rem;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .section__text__p2 {
+    font-size: 1.25rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  /* The hamburger menu links should stack vertically. */
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  /* Adjust footer layout for small screens. */
+  footer nav {
+    height: fit-content;
+    margin-bottom: 2rem;
+  }
+
+  /* Make the profile picture responsive, scaling with the screen width. */
+  .section__pic-container {
+    width: auto;
+    height: 46vw; /* Height is 46% of the viewport width */
+    justify-content: center;
+  }
+
+  /* Justify the text in the 'about me' paragraph for a cleaner, block-like appearance. */
+  .text-container {
+    text-align: justify;
+  }
+}

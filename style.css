@@ -1,0 +1,558 @@
+/*
+=================================================================
+  My Portfolio - Main Stylesheet
+  Author: Shyam Sundar Paul
+  Description: This file contains all the primary styles for the
+               portfolio, including typography, layout, navigation,
+               and component styling.
+=================================================================
+*/
+
+
+/* ======================================================= */
+/* ! 1. FONT IMPORT & ROOT VARIABLES                       */
+/* ======================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+:root {
+  /* Colors */
+  --color-primary-bg: #f8f9fa;
+  --color-text-dark: #333;
+  --color-text-light: #555;
+  --color-white: #fff;
+  --color-border: #ddd;
+
+  /* Animation */
+  --wipe-duration: 0.8s;
+  --wipe-ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --transition-speed-fast: 300ms;
+  --transition-speed-slow: 0.8s;
+  --transition-timing-function: ease-in-out;
+}
+
+
+/* ======================================================= */
+/* ! 2. GENERAL & RESET STYLES                             */
+/* ======================================================= */
+
+* {
+  /* Reset default browser spacing for a consistent look. */
+  margin: 0;
+  padding: 0;
+  /* Use a more intuitive box model for sizing. */
+  box-sizing: border-box;
+}
+
+html {
+  /* Enables smooth scrolling when a user clicks an anchor link. */
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--color-primary-bg);
+  color: var(--color-text-dark);
+}
+
+p {
+  color: var(--color-text-light);
+}
+
+a {
+  color: var(--color-text-dark);
+  text-decoration: none;
+  /* A subtle transition for all links. */
+  transition: all var(--transition-speed-fast) ease;
+}
+
+section {
+  padding-top: 4vh;
+  height: 96vh;
+  margin: 0 10rem;
+  box-sizing: border-box;
+  min-height: fit-content;
+}
+
+.section-container {
+  display: flex;
+}
+
+
+/* ======================================================= */
+/* ! 3. NAVIGATION (DESKTOP & HAMBURGER)                   */
+/* ======================================================= */
+
+/* --- SHARED NAVIGATION STYLES --- */
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 17vh;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  font-size: 1.5rem;
+  gap: 2rem;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--transition-speed-fast) var(--transition-timing-function);
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+/* --- DESKTOP NAVIGATION --- */
+.nav-links a {
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+/* Underline effect on hover */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-text-dark);
+  transition: width var(--transition-speed-fast) var(--transition-timing-function);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* --- HAMBURGER MENU (MOBILE) --- */
+#hamburger-nav {
+  display: none; /* Hidden by default, shown in media queries */
+}
+
+.hamburger-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 24px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.hamburger-icon span {
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-text-dark);
+  transition: all 0.3s var(--transition-timing-function);
+}
+
+.menu-links {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--color-white);
+  width: fit-content;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s var(--transition-timing-function);
+  z-index: 100;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.menu-links a {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--color-text-dark);
+  transition: background-color var(--transition-speed-fast) ease;
+}
+
+.menu-links li {
+  list-style: none;
+}
+
+/* These 'open' classes are toggled by JavaScript to show/hide the menu and animate the icon */
+.menu-links.open {
+  max-height: 300px;
+}
+
+.hamburger-icon.open span:first-child {
+  transform: rotate(45deg) translate(10px, 5px);
+}
+
+.hamburger-icon.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-icon.open span:last-child {
+  transform: rotate(-45deg) translate(10px, -5px);
+}
+
+
+/* ======================================================= */
+/* ! 4. PROFILE SECTION                                    */
+/* ======================================================= */
+
+#profile {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  height: 80vh;
+}
+
+.section__pic-container {
+  display: flex;
+  height: 400px;
+  width: 400px;
+  margin: auto 0;
+  /* Initial state for fade-in animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fade-in-up var(--transition-speed-slow) var(--transition-timing-function) forwards;
+}
+
+.section__text {
+  align-self: center;
+  text-align: center;
+}
+
+.section__text p {
+  font-weight: 600;
+}
+
+.section__text__p1 {
+  text-align: center;
+}
+
+.section__text__p2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 3rem;
+  text-align: center;
+}
+
+#socials-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 1rem;
+  /* Initial state for a delayed fade-in animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fade-in-up var(--transition-speed-slow) var(--transition-timing-function) 0.4s forwards;
+}
+
+
+/* ======================================================= */
+/* ! 5. ABOUT SECTION                                      */
+/* ======================================================= */
+
+#about {
+  position: relative;
+}
+
+.about-containers {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.about-details-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.about-pic {
+  border-radius: 2rem;
+}
+
+.details-container {
+  padding: 1.5rem;
+  flex: 1;
+  background: var(--color-white);
+  border-radius: 2rem;
+  border: 1px solid var(--color-border);
+  text-align: center;
+  transition: transform var(--transition-speed-fast) var(--transition-timing-function),
+              box-shadow var(--transition-speed-fast) var(--transition-timing-function);
+}
+
+.details-container:hover {
+  transform: translateY(-5px); /* Subtle lift effect on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.section-container {
+  gap: 4rem;
+  height: 80%;
+}
+
+.arrow {
+  position: absolute;
+  right: -5rem;
+  bottom: 2.5rem;
+}
+
+
+/* ======================================================= */
+/* ! 6. EXPERIENCE SECTION                                 */
+/* ======================================================= */
+
+#experience {
+  position: relative;
+}
+
+.experience-sub-title {
+  color: var(--color-text-light);
+  font-weight: 600;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.experience-details-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.article-container {
+  display: flex;
+  text-align: initial;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 2.5rem;
+  justify-content: space-around;
+}
+
+article {
+  display: flex;
+  width: 10rem;
+  justify-content: space-around;
+  gap: 0.5rem;
+}
+
+article .icon {
+  cursor: default;
+}
+
+
+/* ======================================================= */
+/* ! 7. PROJECTS SECTION                                   */
+/* ======================================================= */
+
+#projects {
+  position: relative;
+}
+
+.color-container {
+  border-color: rgb(163, 163, 163);
+  background: rgb(250, 250, 250);
+}
+
+.project-img {
+  border-radius: 2rem;
+  width: 90%;
+  height: 90%;
+}
+
+.project-title {
+  margin: 1rem;
+  color: var(--color-text-dark);
+}
+
+
+/* ======================================================= */
+/* ! 8. CONTACT SECTION                                    */
+/* ======================================================= */
+
+#contact {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 70vh;
+}
+
+.contact-info-upper-container {
+  display: flex;
+  justify-content: center;
+  border-radius: 2rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+  margin: 2rem auto;
+  padding: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem;
+}
+
+.contact-info-container p {
+  font-size: larger;
+}
+
+.contact-icon {
+  cursor: default;
+}
+
+.email-icon {
+  height: 2.5rem;
+}
+
+
+/* ======================================================= */
+/* ! 9. FOOTER                                             */
+/* ======================================================= */
+
+footer {
+  height: 26vh;
+  margin: 0 1rem;
+}
+
+footer p {
+  text-align: center;
+}
+
+
+/* ======================================================= */
+/* ! 10. COMPONENTS (BUTTONS & ICONS)                      */
+/* ======================================================= */
+
+/* --- ICONS --- */
+.icon {
+  cursor: pointer;
+  height: 2rem;
+  transition: transform var(--transition-speed-fast) var(--transition-timing-function);
+}
+
+.icon:hover {
+  transform: scale(1.2);
+}
+
+/* --- BUTTONS --- */
+.btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn {
+  font-weight: 600;
+  transition: all var(--transition-speed-fast) ease;
+  padding: 1rem;
+  width: 8rem;
+  border-radius: 2rem;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-color-1,
+.btn-color-2:hover {
+  background-color: var(--color-text-dark);
+  color: var(--color-white);
+}
+
+.btn-color-2 {
+  background: none;
+  border: 1px solid var(--color-text-dark);
+  color: var(--color-text-dark);
+}
+
+.project-btn {
+  color: var(--color-text-dark);
+  border-color: var(--color-text-dark);
+}
+
+/* ======================================================= */
+/* ! 11. ANIMATIONS & EFFECTS                              */
+/* ======================================================= */
+
+/* --- SCROLL REVEAL --- */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--transition-speed-slow) var(--transition-timing-function),
+              transform var(--transition-speed-slow) var(--transition-timing-function);
+}
+
+/* This class is added by JavaScript when the element is visible */
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- FADE IN UP KEYFRAMES (Used on Profile section) --- */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- ROLE TEXT WIPE ANIMATION --- */
+#role-text-container {
+  display: block;
+  width: 250px;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+}
+
+#role-text {
+  display: inline-block;
+  position: relative;
+  /* Tell the browser to optimize for this property change */
+  will-change: clip-path;
+}
+
+/* State classes added by JavaScript */
+.hiding #role-text {
+  animation: wipe-out var(--wipe-duration) var(--wipe-ease) forwards;
+}
+
+.revealing #role-text {
+  clip-path: inset(0 100% 0 0); /* Hides the text before animating in */
+  animation: wipe-in var(--wipe-duration) var(--wipe-ease) forwards;
+}
+
+/* Keyframes for the animation */
+@keyframes wipe-out {
+  from { clip-path: inset(0 0 0 0); }
+  to   { clip-path: inset(0 100% 0 0); }
+}
+
+@keyframes wipe-in {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
