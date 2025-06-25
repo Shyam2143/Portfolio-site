@@ -104,6 +104,9 @@ body {
   font-family: "Poppins", sans-serif;
   background-color: var(--color-primary-bg);
   color: var(--color-text-dark);
+  -webkit-user-select: none; /* For Safari and Chrome */
+  -ms-user-select: none;     /* For Internet Explorer and Edge */
+  user-select: none;         /* Standard syntax */
 }
 
 p {
