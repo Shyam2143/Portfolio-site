@@ -643,7 +643,7 @@ footer p {
   height: 12px;
   top: 14px;
   left: 15px;
-  filter: blur(0.1px);
+  filter: blur(0px);
   background: var(--color-text-dark);
   border-radius: 50%;
   transform: translateX(0);
@@ -661,7 +661,7 @@ footer p {
   width: 12px;
   height: 12px;
   margin-left: 12px;
-  filter: blur(0.1px);
+  filter: blur(0px);
   background: var(--color-text-dark);
   border-radius: 50%;
 }
