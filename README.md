@@ -2,7 +2,7 @@
 
 A responsive personal portfolio built with HTML, CSS, and vanilla JavaScript to showcase my projects, skills, and experience.
 
-**Live Demo:** [your-portfolio-link.com](https://dataanalysts.in)
+**Live Demo:** [https://dataanalysts.in]
 
 ---
 
