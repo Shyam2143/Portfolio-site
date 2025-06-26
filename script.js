@@ -170,8 +170,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Get the toggle buttons and all icons that need to change.
   const themeToggleDesktop = document.getElementById("theme-toggle-desktop");
   const themeToggleMobile = document.getElementById("theme-toggle-mobile");
-  // Select all elements that have theme-specific sources (now divs)
-  const allIcons = document.querySelectorAll('[data-light-src]');
+  const themeIcons = [themeToggleDesktop, themeToggleMobile];
+  const allIcons = document.querySelectorAll('img[data-light-src]');
 
   /**
    * Applies the selected theme to the page.
@@ -181,16 +181,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1. Set the 'data-theme' attribute on the body. CSS uses this to switch variables.
     document.body.setAttribute('data-theme', theme);
 
-    // 2. Update all icons on the page based on their data attributes.
+    // 2. Update the main theme toggle icon source.
+    const toggleIconSrc = theme === 'dark' ? './assets/theme-dark.png' : './assets/theme_light.png';
+    themeIcons.forEach(icon => {
+        if (icon) icon.src = toggleIconSrc;
+    });
+
+    // 3. Update all other icons on the page based on their data attributes.
     allIcons.forEach(icon => {
         const newSrc = theme === 'dark' ? icon.getAttribute('data-dark-src') : icon.getAttribute('data-light-src');
-        if (newSrc) {
-            // Update the background image instead of the src attribute
-            icon.style.backgroundImage = `url('${newSrc}')`;
-        }
+        if (newSrc) icon.src = newSrc;
     });
     
-    // 3. Save the user's preference in their browser's local storage.
+    // 4. Save the user's preference in their browser's local storage.
     localStorage.setItem('theme', theme);
   };
 
