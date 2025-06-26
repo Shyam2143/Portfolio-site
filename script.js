@@ -167,11 +167,14 @@ elementsToReveal.forEach((element) => {
  * ===================================================================
  */
 document.addEventListener("DOMContentLoaded", () => {
-  // Get the toggle buttons and all icons that need to change.
-  const themeToggleDesktop = document.getElementById("theme-toggle-desktop");
-  const themeToggleMobile = document.getElementById("theme-toggle-mobile");
-  const themeIcons = [themeToggleDesktop, themeToggleMobile];
+  // Get the toggle buttons (for changing the src) and all icons that need to change.
+  const themeToggleDesktopIcon = document.getElementById("theme-toggle-desktop");
+  const themeToggleMobileIcon = document.getElementById("theme-toggle-mobile");
+  const allThemeIcons = [themeToggleDesktopIcon, themeToggleMobileIcon];
   const allIcons = document.querySelectorAll('img[data-light-src]');
+  
+  // Get the clickable wrappers for the event listener
+  const themeToggleWrappers = document.querySelectorAll(".theme-toggle-wrapper");
 
   /**
    * Applies the selected theme to the page.
@@ -182,15 +185,20 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.setAttribute('data-theme', theme);
 
     // 2. Update the main theme toggle icon source.
-    const toggleIconSrc = theme === 'dark' ? './assets/theme-dark.png' : './assets/theme_light.png';
-    themeIcons.forEach(icon => {
+    const toggleIconSrc = theme === 'dark' ? './assets/theme_dark.png' : './assets/theme_light.png';
+    allThemeIcons.forEach(icon => {
         if (icon) icon.src = toggleIconSrc;
     });
 
     // 3. Update all other icons on the page based on their data attributes.
     allIcons.forEach(icon => {
-        const newSrc = theme === 'dark' ? icon.getAttribute('data-dark-src') : icon.getAttribute('data-light-src');
-        if (newSrc) icon.src = newSrc;
+        // We check to make sure the icon is not one of the main theme toggle icons
+        // to avoid setting its src twice.
+        const isThemeToggleIcon = icon.id === 'theme-toggle-desktop' || icon.id === 'theme-toggle-mobile';
+        if (!isThemeToggleIcon) {
+            const newSrc = theme === 'dark' ? icon.getAttribute('data-dark-src') : icon.getAttribute('data-light-src');
+            if (newSrc) icon.src = newSrc;
+        }
     });
     
     // 4. Save the user's preference in their browser's local storage.
@@ -206,9 +214,10 @@ document.addEventListener("DOMContentLoaded", () => {
     applyTheme(newTheme);
   };
 
-  // Add click event listeners to both the desktop and mobile toggle buttons.
-  if (themeToggleDesktop) themeToggleDesktop.addEventListener("click", toggleTheme);
-  if (themeToggleMobile) themeToggleMobile.addEventListener("click", toggleTheme);
+  // CORRECTED: Add click event listeners to the WRAPPER elements, not the icons themselves.
+  themeToggleWrappers.forEach(wrapper => {
+    wrapper.addEventListener("click", toggleTheme);
+  });
 
   // On page load, check for a saved theme in local storage. Default to 'light' if none is found.
   const savedTheme = localStorage.getItem('theme') || 'light';

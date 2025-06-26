@@ -243,9 +243,16 @@ nav {
   list-style: none;
 }
 
-.menu-links > li > .icon {
-  display: block;
-  margin: 10px auto;
+.menu-links li:last-child {
+  width: max-content;
+  display: flex;
+  margin: auto;
+  padding: 10px;
+}
+
+.menu-links > li > .icon-link {
+    display: block;
+    margin: 10px auto;
 }
 
 /* These 'open' classes are toggled by JavaScript to show/hide the menu and animate the icon. */
@@ -411,6 +418,7 @@ article {
   gap: 0.5rem;
 }
 
+/* UPDATED: Make checkmark icons non-clickable but allow hover on the parent */
 article .icon {
   cursor: default;
 }
@@ -504,14 +512,30 @@ footer p {
 
 /* --- ICONS --- */
 .icon {
-  cursor: pointer;
   height: 2rem;
   transition: transform var(--transition-speed-fast) var(--transition-timing-function);
 }
 
-.icon:hover {
+/* CORRECTED HOVER EFFECT: Target the wrapper to scale the icon inside */
+.icon-link:hover .icon,
+.theme-toggle-wrapper:hover .icon {
   transform: scale(1.2); /* Zoom effect for all icons. */
 }
+
+/* NEW: Add hover effect to the parent article of checkmark icons */
+article:hover .icon {
+    transform: scale(1.2);
+}
+
+.icon-link {
+    display: inline-block; /* Ensures the link takes up space */
+    cursor: pointer;
+}
+
+.theme-toggle-wrapper {
+    cursor: pointer;
+}
+
 
 /* --- BUTTONS --- */
 .btn-container {
@@ -553,6 +577,17 @@ footer p {
 .project-btn {
   color: var(--color-text-dark);
   border-color: var(--color-text-dark);
+}
+
+/* Utility class to prevent image download */
+.no-download {
+  pointer-events: none; /* Prevents clicks, taps, and hover effects */
+  -webkit-touch-callout: none; /* Disables the callout menu on iOS Safari */
+  -webkit-user-select: none; /* Prevents selection in Chrome, Safari, & Opera */
+  -khtml-user-select: none; /* For older Konqueror browsers */
+  -moz-user-select: none; /* For Firefox */
+  -ms-user-select: none; /* For Internet Explorer & Edge */
+  user-select: none; /* Standard syntax */
 }
 
 
