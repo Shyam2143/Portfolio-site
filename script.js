@@ -11,6 +11,8 @@
   III.  SCROLL REVEAL ANIMATION
   IV.   DARK MODE / THEME TOGGLER
   V.    PRELOADER LOGIC
+  VI.   ENHANCED SMOOTH SCROLLING
+  VII.  ENHANCED PAGE LOAD ANIMATION
 =================================================================
 */
 
@@ -34,6 +36,29 @@ function toggleMenu() {
   menu.classList.toggle("open");
   icon.classList.toggle("open");
 }
+
+/**
+ * Close mobile menu when clicking outside of it
+ * Purpose: Improves user experience by allowing users to close the menu
+ * by tapping anywhere outside the menu area on mobile devices.
+ */
+document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener('click', (event) => {
+    const menu = document.querySelector(".menu-links");
+    const hamburgerMenu = document.querySelector(".hamburger-menu");
+    const isMenuOpen = menu && menu.classList.contains('open');
+    
+    // Check if menu is open and click is outside the hamburger menu area
+    if (isMenuOpen && hamburgerMenu && !hamburgerMenu.contains(event.target)) {
+      // Close the menu
+      const icon = document.querySelector(".hamburger-icon");
+      menu.classList.remove("open");
+      if (icon) {
+        icon.classList.remove("open");
+      }
+    }
+  });
+});
 
 
 /**
@@ -245,5 +270,112 @@ window.addEventListener('load', () => {
   if (mainContent) {
     // Add the 'visible' class to trigger the main content's fade-in animation.
     mainContent.classList.add('visible');
+  }
+});
+
+
+/**
+ * ===================================================================
+ * VI. ENHANCED SMOOTH SCROLLING
+ *
+ * Purpose: Add buttery smooth scrolling for navigation links
+ * ===================================================================
+ */
+document.addEventListener("DOMContentLoaded", () => {
+  // Get all navigation links that point to sections
+  const navLinks = document.querySelectorAll('a[href^="#"]');
+  
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      const targetId = link.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      
+      if (targetSection) {
+        // Calculate offset for navigation
+        const headerOffset = 80;
+        const elementPosition = targetSection.offsetTop;
+        const offsetPosition = elementPosition - headerOffset;
+        
+        // Ultra smooth scroll with custom easing
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        
+        // Close mobile menu if open
+        const menu = document.querySelector(".menu-links");
+        const icon = document.querySelector(".hamburger-icon");
+        if (menu && menu.classList.contains('open')) {
+          menu.classList.remove('open');
+          icon.classList.remove('open');
+        }
+      }
+    });
+  });
+});
+
+
+/**
+ * ===================================================================
+ * VII. ENHANCED PAGE LOAD ANIMATION
+ *
+ * Purpose: Add smooth entrance animations for page elements
+ * ===================================================================
+ */
+window.addEventListener('load', () => {
+  const preloader = document.getElementById('preloader');
+  const mainContent = document.getElementById('main-content');
+  
+  // Hide preloader and show main content smoothly
+  if (preloader) {
+    preloader.classList.add('hidden');
+  }
+  
+  if (mainContent) {
+    mainContent.classList.add('visible');
+    
+    // Add subtle entrance animations to key elements
+    setTimeout(() => {
+      const logo = document.querySelector('.logo');
+      const navLinks = document.querySelectorAll('.nav-links a');
+      const profileElements = document.querySelectorAll('#profile .section__text > *');
+      
+      // Animate logo
+      if (logo) {
+        logo.style.opacity = '0';
+        logo.style.transform = 'translateY(-20px)';
+        logo.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        setTimeout(() => {
+          logo.style.opacity = '1';
+          logo.style.transform = 'translateY(0)';
+        }, 100);
+      }
+      
+      // Animate navigation links
+      navLinks.forEach((link, index) => {
+        if (link.closest('.theme-toggle-wrapper')) return; // Skip theme toggle
+        link.style.opacity = '0';
+        link.style.transform = 'translateY(-20px)';
+        link.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        setTimeout(() => {
+          link.style.opacity = '1';
+          link.style.transform = 'translateY(0)';
+        }, 200 + (index * 100));
+      });
+      
+      // Animate profile text elements
+      profileElements.forEach((element, index) => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateX(30px)';
+        element.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        setTimeout(() => {
+          element.style.opacity = '1';
+          element.style.transform = 'translateX(0)';
+        }, 400 + (index * 150));
+      });
+      
+    }, 300);
   }
 });

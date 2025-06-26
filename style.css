@@ -18,6 +18,7 @@
   11. COMPONENTS (Buttons & Icons)
   12. ANIMATIONS & EFFECTS
   13. PRELOADER
+  14. ULTRA-SMOOTH MICRO-INTERACTIONS
 =================================================================
 */
 
@@ -108,6 +109,9 @@ body {
   -webkit-user-select: none; /* For Safari and Chrome */
   -ms-user-select: none;     /* For Internet Explorer and Edge */
   user-select: none;         /* Standard syntax */
+  /* Add smooth transition for theme changes */
+  transition: background-color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 p {
@@ -117,7 +121,8 @@ p {
 a {
   color: var(--color-text-dark);
   text-decoration: none;
-  transition: all var(--transition-speed-fast) ease;
+  transition: color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.2s ease;
 }
 
 section {
@@ -156,11 +161,11 @@ nav {
   font-size: 2rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform var(--transition-speed-fast) var(--transition-timing-function);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .logo:hover {
-  transform: scale(1.05); /* Slight zoom effect on hover. */
+  transform: scale(1.08) rotate(-2deg);
 }
 
 /* --- DESKTOP NAVIGATION --- */
@@ -183,7 +188,7 @@ nav {
   width: 0;
   height: 2px;
   background-color: var(--color-text-dark);
-  transition: width var(--transition-speed-fast) var(--transition-timing-function);
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .nav-links a:hover::after {
@@ -213,7 +218,7 @@ nav {
   width: 100%;
   height: 2px;
   background-color: var(--color-text-dark);
-  transition: all 0.3s var(--transition-timing-function);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .menu-links {
@@ -224,10 +229,14 @@ nav {
   width: fit-content;
   max-height: 0; /* Initially hidden */
   overflow: hidden;
-  transition: all 0.3s var(--transition-timing-function);
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* This is the key change */
   z-index: 100;
   border-radius: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform-origin: top right;
+  transform: scale(0.9);
+  opacity: 0;
+  will-change: transform, opacity, max-height;
 }
 
 .menu-links a {
@@ -258,18 +267,21 @@ nav {
 /* These 'open' classes are toggled by JavaScript to show/hide the menu and animate the icon. */
 .menu-links.open {
   max-height: 300px; /* Reveal the menu. */
+  transform: scale(1);
+  opacity: 1;
 }
 
 .hamburger-icon.open span:first-child {
-  transform: rotate(45deg) translate(10px, 5px); /* Forms the 'X'. */
+  transform: rotate(45deg) translate(8px, 5px); /* Forms the 'X'. */
 }
 
 .hamburger-icon.open span:nth-child(2) {
   opacity: 0; /* Hides the middle bar. */
+  transform: translateX(-20px);
 }
 
 .hamburger-icon.open span:last-child {
-  transform: rotate(-45deg) translate(10px, -5px); /* Forms the 'X'. */
+  transform: rotate(-45deg) translate(8px, -5px); /* Forms the 'X'. */
 }
 
 
@@ -360,13 +372,13 @@ nav {
   border-radius: 2rem;
   border: 1px solid var(--color-border);
   text-align: center;
-  transition: transform var(--transition-speed-fast) var(--transition-timing-function),
-              box-shadow var(--transition-speed-fast) var(--transition-timing-function);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .details-container:hover {
-  transform: translateY(-5px); /* Subtle lift effect on hover. */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
 }
 
 .section-container {
@@ -441,6 +453,13 @@ article .icon {
   border-radius: 2rem;
   width: 90%;
   height: 90%;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter 0.3s ease;
+}
+
+.project-img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
 }
 
 .project-title {
@@ -469,6 +488,13 @@ article .icon {
   margin: 2rem auto;
   padding: 0.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.3s ease;
+}
+
+.contact-info-upper-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .contact-info-container {
@@ -522,9 +548,13 @@ footer p {
   transform: scale(1.2); /* Zoom effect for all icons. */
 }
 
-/* NEW: Add hover effect to the parent article of checkmark icons */
-article:hover .icon {
-    transform: scale(1.2);
+/* Enhanced theme toggle animation */
+.theme-toggle-wrapper img {
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.theme-toggle-wrapper:hover img {
+  transform: rotate(180deg) scale(1.2);
 }
 
 .icon-link {
@@ -546,7 +576,10 @@ article:hover .icon {
 
 .btn {
   font-weight: 600;
-  transition: all var(--transition-speed-fast) ease;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              background-color 0.3s ease,
+              color 0.3s ease;
   padding: 1rem;
   width: 8rem;
   border-radius: 2rem;
@@ -556,8 +589,8 @@ article:hover .icon {
 }
 
 .btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 /* Primary Button Style */
@@ -599,8 +632,8 @@ article:hover .icon {
 .scroll-reveal {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity var(--transition-speed-slow) var(--transition-timing-function),
-              transform var(--transition-speed-slow) var(--transition-timing-function);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* This class is added by JavaScript when the element is visible in the viewport. */
@@ -726,4 +759,132 @@ article:hover .icon {
 #main-content.visible {
   visibility: visible;
   opacity: 1;
+}
+
+/* ======================================================= */
+/* ! 14. ULTRA-SMOOTH MICRO-INTERACTIONS                   */
+/* ======================================================= */
+
+/* Enhanced smooth body transitions for theme switching */
+body {
+  transition: background-color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Smooth button interactions */
+.btn {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              background-color 0.3s ease,
+              color 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Enhanced icon animations */
+.icon-link img,
+.theme-toggle-wrapper img {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity 0.3s ease;
+}
+
+.icon-link:hover img {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.theme-toggle-wrapper:hover img {
+  transform: rotate(180deg) scale(1.2);
+}
+
+/* Smooth navigation link underlines */
+.nav-links a::after {
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Enhanced details container hover */
+.details-container {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.details-container:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* Smooth project image animations */
+.project-img {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter 0.3s ease;
+}
+
+.project-img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* Enhanced hamburger menu animations */
+.hamburger-icon span {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.menu-links {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Smooth scroll reveal with stagger effect */
+.scroll-reveal {
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Enhanced logo animation */
+.logo {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.logo:hover {
+  transform: scale(1.08) rotate(-2deg);
+}
+
+/* Smooth contact container animations */
+.contact-info-upper-container {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.3s ease;
+}
+
+.contact-info-upper-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Enhanced arrow animation */
+.arrow img {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.arrow:hover img {
+  transform: translateY(5px) scale(1.1);
+}
+
+/* Smooth link hover effects */
+a {
+  transition: color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.2s ease;
+}
+
+a:hover {
+  transform: translateY(-1px);
+}
+
+/* Enhanced article animations */
+article {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+article:hover {
+  transform: translateX(5px);
 }
