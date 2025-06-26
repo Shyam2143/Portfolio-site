@@ -513,6 +513,14 @@ footer p {
   transform: scale(1.2); /* Zoom effect for all icons. */
 }
 
+/* THIS IS THE NEW CLASS YOU NEED TO ADD */
+.bg-icon {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 2rem; /* Default width to match height */
+}
+
 /* --- BUTTONS --- */
 .btn-container {
   display: flex;
