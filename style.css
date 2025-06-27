@@ -1,123 +1,188 @@
-/*
-=================================================================
-  My Portfolio - Main Stylesheet
-  Author: Shyam Sundar Paul
-  
-  TABLE OF CONTENTS
-  ---------------------------------------------------
-  1.  FONT IMPORT & ROOT VARIABLES
-  2.  DARK MODE THEME
-  3.  GENERAL & RESET STYLES
-  4.  NAVIGATION (Desktop & Hamburger)
-  5.  PROFILE SECTION
-  6.  ABOUT SECTION
-  7.  EXPERIENCE SECTION
-  8.  PROJECTS SECTION
-  9.  CONTACT SECTION
-  10. FOOTER
-  11. COMPONENTS (Buttons & Icons)
-  12. ANIMATIONS & EFFECTS
-  13. PRELOADER
-  14. ULTRA-SMOOTH MICRO-INTERACTIONS
-=================================================================
+/* 
+    ███████████████████████████████████████████████████████████████████████████
+    ███                     PORTFOLIO STYLESHEET                            ███
+    ███████████████████████████████████████████████████████████████████████████
+    
+    PROJECT: Professional Portfolio Website
+    AUTHOR:  Shyam Sundar Paul
+    PURPOSE: Complete visual styling system for responsive portfolio website
+    
+    ARCHITECTURE OVERVIEW:
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    This stylesheet employs a modular design system with:
+    • CSS Custom Properties for consistent theming
+    • Component-based styling approach
+    • Mobile-first responsive design principles
+    • Advanced animation and interaction systems
+    • Ultra-smooth micro-interactions
+    
+    STYLE GUIDE:
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    • Typography: Poppins font family for modern aesthetics
+    • Color System: Dynamic light/dark theme switching
+    • Animations: Cubic-bezier easing for organic motion
+    • Layout: Flexbox and CSS Grid for responsive layouts
+    • Effects: Backdrop filters and advanced box shadows
+    
+    PERFORMANCE OPTIMIZATIONS:
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    • Hardware acceleration with transform3d and will-change
+    • Efficient CSS transitions and keyframe animations
+    • Optimized selector specificity for fast rendering
+    • Prefixed properties for cross-browser compatibility
+    
+    ███████████████████████████████████████████████████████████████████████████
 */
 
 
-/* ======================================================= */
-/* ! 1. FONT IMPORT & ROOT VARIABLES                       */
-/* ======================================================= */
+/* 
+    ═══════════════════════════════════════════════════════════════════════════
+    SECTION 1: FOUNDATION SYSTEM
+    ═══════════════════════════════════════════════════════════════════════════
+    
+    Essential imports, custom properties, and base styles that form the
+    foundation of the entire design system. All subsequent styles build
+    upon these foundational elements.
+*/
 
-/* Import the 'Poppins' font family from Google Fonts. */
+/* Typography import from Google Fonts for consistent cross-platform rendering */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
-/* Root variables allow for easy theme management and consistency. */
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  DESIGN TOKEN SYSTEM                                                │
+    │  CSS Custom Properties for consistent theming and easy maintenance  │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 :root {
-  /* Colors */
-  --color-primary-bg: #f8f9fa; /* Light background color */
-  --color-text-dark: #333;      /* Dark text for high contrast */
-  --color-text-light: #555;     /* Lighter text for subheadings */
-  --color-white: #fff;          /* Used for card backgrounds */
-  --color-border: #ddd;         /* A soft border color */
+  /* Color palette for light theme */
+  --color-primary-bg: #f8f9fa;     /* Primary background surface */
+  --color-text-dark: #333;         /* High contrast text for readability */
+  --color-text-light: #555;        /* Secondary text with reduced emphasis */
+  --color-white: #fff;             /* Pure white for content surfaces */
+  --color-border: #ddd;            /* Subtle borders and dividers */
 
-  /* Animation Timings & Easing */
-  --wipe-duration: 0.8s;
-  --wipe-ease: cubic-bezier(0.65, 0, 0.35, 1);
-  --transition-speed-fast: 300ms;
-  --transition-speed-slow: 0.8s;
-  --transition-timing-function: ease-in-out;
+  /* Animation timing system for consistent motion design */
+  --wipe-duration: 0.8s;                                    /* Text animation duration */
+  --wipe-ease: cubic-bezier(0.65, 0, 0.35, 1);             /* Text animation easing */
+  --transition-speed-fast: 300ms;                           /* Quick interactions */
+  --transition-speed-slow: 0.8s;                            /* Dramatic effects */
+  --transition-timing-function: ease-in-out;                /* Standard easing */
 }
 
 
-/* ======================================================= */
-/* ! 2. DARK MODE THEME                                    */
-/* ======================================================= */
-
-/* When the body has the 'data-theme="dark"' attribute, these variables override the default ones. */
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  DARK THEME SYSTEM                                                  │
+    │  Intelligent color scheme switching with smooth transitions         │
+    └─────────────────────────────────────────────────────────────────────┘
+    
+    When the body element receives the 'data-theme="dark"' attribute,
+    these custom properties override the default light theme values,
+    creating a seamless dark mode experience.
+*/
 body[data-theme="dark"] {
-  --color-primary-bg: #1a1a1a;
-  --color-text-dark: #f0f0f0;
-  --color-text-light: #a0a0a0;
-  --color-white: #2a2a2a;
-  --color-border: #444;
+  /* Dark theme color overrides */
+  --color-primary-bg: #1a1a1a;    /* Deep dark background */
+  --color-text-dark: #f0f0f0;     /* Light text for dark surfaces */
+  --color-text-light: #a0a0a0;    /* Muted text for dark theme */
+  --color-white: #2a2a2a;         /* Dark surface for content cards */
+  --color-border: #444;           /* Subtle borders in dark theme */
 }
 
-/* --- Specific Dark Mode Adjustments --- */
+/* Dark theme component-specific adjustments */
 body[data-theme="dark"] .btn-color-1,
 body[data-theme="dark"] .btn-color-2:hover {
-  background-color: #f0f0f0; /* Light button background */
-  color: #1a1a1a;           /* Dark button text */
+  background-color: #f0f0f0;      /* Light button background in dark theme */
+  color: #1a1a1a;                 /* Dark text on light button */
 }
 
 body[data-theme="dark"] .btn-color-2 {
-  border-color: #f0f0f0;
-  color: #f0f0f0;
+  border-color: #f0f0f0;          /* Light border for secondary buttons */
+  color: #f0f0f0;                 /* Light text for secondary buttons */
 }
 
 body[data-theme="dark"] .color-container {
-  background: #2a2a2a;
-  border-color: #444;
+  background: #2a2a2a;            /* Dark project card backgrounds */
+  border-color: #444;             /* Subtle borders for dark cards */
 }
 
 body[data-theme="dark"] .menu-links {
-    background-color: #2a2a2a;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  background-color: #2a2a2a;      /* Dark mobile menu background */
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);  /* Inverted shadow */
 }
 
 
-/* ======================================================= */
-/* ! 3. GENERAL & RESET STYLES                             */
-/* ======================================================= */
+/* 
+    ═══════════════════════════════════════════════════════════════════════════
+    SECTION 2: RESET & BASE STYLES
+    ═══════════════════════════════════════════════════════════════════════════
+    
+    Modern CSS reset and fundamental styling that ensures consistent
+    behavior across all browsers and devices. Establishes the basic
+    visual and interactive foundation for all elements.
+*/
 
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  UNIVERSAL RESET SYSTEM                                             │
+    │  Eliminates browser inconsistencies and establishes predictable     │
+    │  box model behavior for precise layout control                      │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 * {
-  /* Reset default browser spacing for a consistent look. */
+  /* Remove default browser spacing for consistent layouts */
   margin: 0;
   padding: 0;
-  /* Use a more intuitive box model for element sizing. */
+  
+  /* Use intuitive box-sizing for predictable element dimensions */
   box-sizing: border-box;
+  
+  /* Disable touch highlight on mobile devices for cleaner interactions */
   -webkit-tap-highlight-color: transparent;
 }
 
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  HTML DOCUMENT CONFIGURATION                                        │
+    │  Establishes smooth scrolling behavior for anchor link navigation   │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 html {
-  /* Enables smooth scrolling when a user clicks an anchor link (e.g., in the nav). */
+  /* Enable smooth scrolling for anchor link navigation */
   scroll-behavior: smooth;
 }
 
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  BODY ELEMENT STYLING                                               │
+    │  Primary container styling with theme-aware transitions             │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 body {
+  /* Typography system */
   font-family: "Poppins", sans-serif;
+  
+  /* Theme-aware color system */
   background-color: var(--color-primary-bg);
   color: var(--color-text-dark);
-  -webkit-user-select: none; /* For Safari and Chrome */
-  -ms-user-select: none;     /* For Internet Explorer and Edge */
-  user-select: none;         /* Standard syntax */
-  /* Add smooth transition for theme changes */
+  
+  /* Disable text selection for UI elements */
+  -webkit-user-select: none;      /* Safari and Chrome compatibility */
+  -ms-user-select: none;          /* Internet Explorer and Edge compatibility */
+  user-select: none;              /* Standard property */
+  
+  /* Smooth theme transitions for enhanced user experience */
   transition: background-color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
               color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+/* Secondary text styling with theme awareness */
 p {
   color: var(--color-text-light);
 }
 
+/* Link styling with smooth hover transitions */
 a {
   color: var(--color-text-dark);
   text-decoration: none;
@@ -125,38 +190,62 @@ a {
               transform 0.2s ease;
 }
 
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  SECTION LAYOUT SYSTEM                                              │
+    │  Consistent spacing and sizing for all major content sections       │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 section {
-  padding-top: 4vh;
-  height: 96vh;
-  margin: 0 10rem;
-  box-sizing: border-box;
-  min-height: fit-content;
+  padding-top: 4vh;               /* Consistent top spacing */
+  height: 96vh;                   /* Nearly full viewport height */
+  margin: 0 10rem;                /* Horizontal margins for content width */
+  box-sizing: border-box;         /* Include padding in height calculations */
+  min-height: fit-content;        /* Ensure content always fits */
 }
 
+/* Flexible container for section content alignment */
 .section-container {
   display: flex;
 }
 
 
-/* ======================================================= */
-/* ! 4. NAVIGATION (DESKTOP & HAMBURGER)                   */
-/* ======================================================= */
+/* 
+    ═══════════════════════════════════════════════════════════════════════════
+    SECTION 3: NAVIGATION SYSTEM
+    ═══════════════════════════════════════════════════════════════════════════
+    
+    Comprehensive navigation implementation featuring both desktop and mobile
+    interfaces. Includes advanced hover effects, theme controls, and responsive
+    hamburger menu with smooth animations.
+*/
 
-/* --- SHARED NAVIGATION STYLES --- */
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  NAVIGATION FOUNDATION                                              │
+    │  Core navigation styles shared between desktop and mobile versions  │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 17vh;
+  height: 17vh;                   /* Consistent navigation height */
 }
 
 .nav-links {
   display: flex;
-  list-style: none;
+  list-style: none;              /* Remove default list styling */
   font-size: 1.5rem;
-  gap: 2rem;
+  gap: 2rem;                     /* Consistent spacing between links */
 }
 
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  BRAND IDENTITY ELEMENT                                             │
+    │  Logo styling with interactive hover effects                        │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 .logo {
   font-size: 2rem;
   font-weight: 600;
@@ -165,10 +254,15 @@ nav {
 }
 
 .logo:hover {
-  transform: scale(1.08) rotate(-2deg);
+  transform: scale(1.08) rotate(-2deg);  /* Playful hover animation */
 }
 
-/* --- DESKTOP NAVIGATION --- */
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  DESKTOP NAVIGATION INTERFACE                                       │
+    │  Primary navigation for larger screens with advanced hover effects  │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 .nav-links a {
   position: relative;
   padding-bottom: 0.5rem;
@@ -176,28 +270,33 @@ nav {
 
 #desktop-nav .nav-links li:last-child {
   display: flex;
-  align-items: center;
+  align-items: center;            /* Center-align theme toggle */
 }
 
-/* Underline effect on hover for desktop links. */
+/* Animated underline effect for navigation links */
 .nav-links a::after {
   content: "";
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 0;
+  width: 0;                       /* Start with no underline */
   height: 2px;
   background-color: var(--color-text-dark);
   transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .nav-links a:hover::after {
-  width: 100%;
+  width: 100%;                    /* Expand underline on hover */
 }
 
-/* --- HAMBURGER MENU (MOBILE) --- */
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  MOBILE NAVIGATION SYSTEM                                           │
+    │  Responsive hamburger menu with smooth animations                   │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 #hamburger-nav {
-  display: none; /* Hidden by default, shown by media queries on smaller screens. */
+  display: none;                  /* Hidden by default, shown via media queries */
 }
 
 .hamburger-menu {
@@ -205,6 +304,7 @@ nav {
   display: inline-block;
 }
 
+/* Three-line hamburger icon construction */
 .hamburger-icon {
   display: flex;
   flex-direction: column;
@@ -221,15 +321,21 @@ nav {
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  COLLAPSIBLE MENU CONTAINER                                         │
+    │  Expandable menu with smooth reveal animations                      │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 .menu-links {
   position: absolute;
   top: 100%;
   right: 0;
   background-color: var(--color-white);
   width: fit-content;
-  max-height: 0; /* Initially hidden */
+  max-height: 0;                  /* Initially collapsed */
   overflow: hidden;
-  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* This is the key change */
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   z-index: 100;
   border-radius: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -260,59 +366,95 @@ nav {
 }
 
 .menu-links > li > .icon-link {
-    display: block;
-    margin: 10px auto;
+  display: block;
+  margin: 10px auto;
 }
 
-/* These 'open' classes are toggled by JavaScript to show/hide the menu and animate the icon. */
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  HAMBURGER MENU ANIMATIONS                                          │
+    │  Smooth transitions between closed and open states                  │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
+
+/* Menu expansion state (controlled by JavaScript) */
 .menu-links.open {
-  max-height: 300px; /* Reveal the menu. */
+  max-height: 300px;              /* Reveal the full menu */
   transform: scale(1);
   opacity: 1;
 }
 
+/* Hamburger icon transformation to 'X' when menu is open */
 .hamburger-icon.open span:first-child {
-  transform: rotate(45deg) translate(8px, 5px); /* Forms the 'X'. */
+  transform: rotate(45deg) translate(8px, 5px);  /* Top line of X */
 }
 
 .hamburger-icon.open span:nth-child(2) {
-  opacity: 0; /* Hides the middle bar. */
+  opacity: 0;                     /* Hide middle line */
   transform: translateX(-20px);
 }
 
 .hamburger-icon.open span:last-child {
-  transform: rotate(-45deg) translate(8px, -5px); /* Forms the 'X'. */
+  transform: rotate(-45deg) translate(8px, -5px); /* Bottom line of X */
 }
 
 
-/* ======================================================= */
-/* ! 5. PROFILE SECTION                                    */
-/* ======================================================= */
+/* 
+    ═══════════════════════════════════════════════════════════════════════════
+    SECTION 4: HERO PROFILE SECTION
+    ═══════════════════════════════════════════════════════════════════════════
+    
+    Landing area styling including profile image, name display, animated role
+    text, call-to-action buttons, and social media links. Features smooth
+    entrance animations and responsive layout design.
+*/
 
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  HERO LAYOUT SYSTEM                                                 │
+    │  Flexible layout accommodating profile image and text content       │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 #profile {
   display: flex;
   justify-content: center;
-  gap: 5rem;
-  height: 80vh;
+  gap: 5rem;                      /* Space between image and text */
+  height: 80vh;                   /* Optimized height for hero section */
 }
 
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  PROFILE IMAGE CONTAINER                                            │
+    │  Professional headshot with entrance animation                      │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 .section__pic-container {
   display: flex;
   height: 400px;
   width: 400px;
   margin: auto 0;
-  opacity: 0; /* Initial state for animation. */
+  
+  /* Initial animation state */
+  opacity: 0;
   transform: translateY(20px);
+  
+  /* Smooth entrance animation */
   animation: fade-in-up var(--transition-speed-slow) var(--transition-timing-function) forwards;
 }
 
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  HERO TEXT CONTENT                                                  │
+    │  Primary text content with typography hierarchy                     │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 .section__text {
   align-self: center;
   text-align: center;
 }
 
 .section__text p {
-  font-weight: 600;
+  font-weight: 600;               /* Emphasize introductory text */
 }
 
 .section__text__p1 {
@@ -324,33 +466,56 @@ nav {
   margin-bottom: 1rem;
 }
 
+/* Primary heading styling */
 .title {
   font-size: 3rem;
   text-align: center;
 }
 
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  SOCIAL MEDIA CONNECTIONS                                           │
+    │  Interactive social links with delayed entrance animation           │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 #socials-container {
   display: flex;
   justify-content: center;
   margin-top: 1rem;
   gap: 1rem;
-  opacity: 0; /* Initial state for a delayed animation. */
+  
+  /* Initial animation state for delayed entrance */
+  opacity: 0;
   transform: translateY(20px);
+  
+  /* Delayed entrance animation for staggered effect */
   animation: fade-in-up var(--transition-speed-slow) var(--transition-timing-function) 0.4s forwards;
 }
 
 
-/* ======================================================= */
-/* ! 6. ABOUT SECTION                                      */
-/* ======================================================= */
+/* 
+    ═══════════════════════════════════════════════════════════════════════════
+    SECTION 5: ABOUT SECTION
+    ═══════════════════════════════════════════════════════════════════════════
+    
+    Personal and professional overview featuring education and experience
+    cards with interactive hover effects, secondary profile image, and
+    comprehensive personal statement.
+*/
 
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  ABOUT SECTION LAYOUT                                               │
+    │  Structured layout with navigation arrows and card containers       │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 #about {
-  position: relative;
+  position: relative;             /* Enable absolute positioning for arrows */
 }
 
 .about-containers {
   display: flex;
-  gap: 2rem;
+  gap: 2rem;                      /* Consistent spacing between cards */
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
@@ -361,10 +526,17 @@ nav {
   flex-direction: column;
 }
 
+/* Secondary profile image with rounded corners */
 .about-pic {
   border-radius: 2rem;
 }
 
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  INTERACTIVE INFORMATION CARDS                                      │
+    │  Hover-enhanced cards for education and experience details          │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 .details-container {
   padding: 1.5rem;
   flex: 1;
@@ -377,28 +549,47 @@ nav {
 }
 
 .details-container:hover {
-  transform: translateY(-8px) scale(1.02);
+  transform: translateY(-8px) scale(1.02);  /* Lift and scale on hover */
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
 }
 
+/* Main section container layout */
 .section-container {
-  gap: 4rem;
+  gap: 4rem;                      /* Generous spacing between content areas */
   height: 80%;
 }
 
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  SECTION NAVIGATION ARROW                                           │
+    │  Positioned arrow for guiding users to next section                 │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 .arrow {
   position: absolute;
-  right: -5rem;
+  right: -5rem;                   /* Position outside main content area */
   bottom: 2.5rem;
 }
 
 
-/* ======================================================= */
-/* ! 7. EXPERIENCE SECTION                                 */
-/* ======================================================= */
+/* 
+    ═══════════════════════════════════════════════════════════════════════════
+    SECTION 6: SKILLS & EXPERIENCE SHOWCASE
+    ═══════════════════════════════════════════════════════════════════════════
+    
+    Two-column layout displaying technical proficiencies and business
+    competencies. Features skill cards with proficiency indicators and
+    smooth hover interactions for enhanced user engagement.
+*/
 
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  EXPERIENCE SECTION LAYOUT                                          │
+    │  Structured container for skills showcase with navigation arrow     │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 #experience {
-  position: relative;
+  position: relative;             /* Enable absolute positioning for navigation */
 }
 
 .experience-sub-title {
@@ -414,41 +605,95 @@ nav {
   flex-direction: column;
 }
 
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  SKILLS GRID SYSTEM                                                 │
+    │  Flexible grid layout for displaying individual skill items         │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 .article-container {
   display: flex;
   text-align: initial;
   flex-wrap: wrap;
   flex-direction: row;
-  gap: 2.5rem;
+  gap: 2.5rem;                    /* Consistent spacing between skill items */
   justify-content: space-around;
 }
 
+/* Individual skill item layout */
 article {
   display: flex;
   width: 10rem;
   justify-content: flex-start;
-  gap: 0.5rem;
+  gap: 0.5rem;                    /* Space between icon and text */
 }
 
-/* UPDATED: Make checkmark icons non-clickable but allow hover on the parent */
+/* Icon styling within skill items */
 article .icon {
-  cursor: default;
+  cursor: default;                /* Prevent cursor change on hover */
+}
+
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  EXPERIENCE PERIOD BADGES                                           │
+    │  Styled time period indicators with responsive behavior             │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
+.experience-period {
+  color: var(--color-text-dark);
+  font-weight: 600;
+  float: right;
+  background: rgba(0, 0, 0, 0.08);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+/* Mobile-responsive period badge behavior */
+@media (max-width: 768px) {
+  .experience-period {
+    float: none;                  /* Remove float on mobile */
+    display: block;
+    text-align: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    clear: both;
+  }
 }
 
 
-/* ======================================================= */
-/* ! 8. PROJECTS SECTION                                   */
-/* ======================================================= */
+/* 
+    ═══════════════════════════════════════════════════════════════════════════
+    SECTION 7: PROJECT PORTFOLIO GALLERY
+    ═══════════════════════════════════════════════════════════════════════════
+    
+    Showcase of recent projects with interactive image previews, descriptive
+    titles, and action buttons for accessing source code and live demonstrations.
+    Features smooth hover effects and responsive layout.
+*/
 
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  PROJECTS SECTION LAYOUT                                            │
+    │  Grid-based project showcase with navigation elements               │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 #projects {
-  position: relative;
+  position: relative;             /* Enable absolute positioning for arrows */
 }
 
+/* Project card container styling */
 .color-container {
   border-color: rgb(163, 163, 163);
   background: rgb(250, 250, 250);
 }
 
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  PROJECT IMAGE GALLERY                                              │
+    │  Interactive project previews with smooth hover transformations     │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 .project-img {
   border-radius: 2rem;
   width: 90%;
@@ -458,27 +703,46 @@ article .icon {
 }
 
 .project-img:hover {
-  transform: scale(1.05);
-  filter: brightness(1.1);
+  transform: scale(1.05);         /* Subtle zoom effect on hover */
+  filter: brightness(1.1);       /* Enhanced brightness for engagement */
 }
 
+/* Project title styling */
 .project-title {
   margin: 1rem;
   color: var(--color-text-dark);
 }
 
 
-/* ======================================================= */
-/* ! 9. CONTACT SECTION                                    */
-/* ======================================================= */
+/* 
+    ═══════════════════════════════════════════════════════════════════════════
+    SECTION 8: CONTACT INFORMATION CENTER
+    ═══════════════════════════════════════════════════════════════════════════
+    
+    Professional contact section featuring email and LinkedIn connections
+    with interactive hover effects and clean, accessible design for easy
+    communication initiation.
+*/
 
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  CONTACT SECTION LAYOUT                                             │
+    │  Centered layout optimized for contact information display          │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 #contact {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 70vh;
+  height: 70vh;                   /* Optimized height for contact section */
 }
 
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  CONTACT INFORMATION CARDS                                          │
+    │  Interactive contact method containers with hover effects           │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 .contact-info-upper-container {
   display: flex;
   justify-content: center;
@@ -489,91 +753,126 @@ article .icon {
   padding: 0.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              box-shadow 0.3s ease;
+              box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .contact-info-upper-container:hover {
-  transform: translateY(-3px);
+  transform: translateY(-3px);    /* Lift effect on hover */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Individual contact method styling */
 .contact-info-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.5rem;                    /* Space between icon and text */
   margin: 1rem;
 }
 
 .contact-info-container p {
-  font-size: larger;
+  font-size: larger;              /* Emphasize contact information */
 }
 
+/* Contact icon styling */
 .contact-icon {
-  cursor: default;
+  cursor: default;                /* Prevent cursor change */
 }
 
 .email-icon {
-  height: 2.5rem;
+  height: 2.5rem;                 /* Larger email icon for emphasis */
 }
 
 
-/* ======================================================= */
-/* ! 10. FOOTER                                            */
-/* ======================================================= */
+/* 
+    ═══════════════════════════════════════════════════════════════════════════
+    SECTION 9: FOOTER NAVIGATION
+    ═══════════════════════════════════════════════════════════════════════════
+    
+    Simple footer with duplicate navigation links and copyright information
+    for complete user experience and easy access to all sections.
+*/
 
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  FOOTER LAYOUT SYSTEM                                               │
+    │  Minimal footer design with centered content alignment              │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 footer {
-  height: 26vh;
-  margin: 0 1rem;
+  height: 26vh;                   /* Consistent footer height */
+  margin: 0 1rem;                 /* Horizontal margins for content */
 }
 
 footer p {
-  text-align: center;
+  text-align: center;             /* Center-align copyright text */
 }
 
 
-/* ======================================================= */
-/* ! 11. COMPONENTS (BUTTONS & ICONS)                      */
-/* ======================================================= */
+/* 
+    ═══════════════════════════════════════════════════════════════════════════
+    SECTION 10: REUSABLE COMPONENT SYSTEM
+    ═══════════════════════════════════════════════════════════════════════════
+    
+    Modular component styles for buttons, icons, and interactive elements
+    used throughout the portfolio. Features consistent hover effects,
+    theme-aware styling, and accessibility considerations.
+*/
 
-/* --- ICONS --- */
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  ICON SYSTEM                                                        │
+    │  Universal icon styling with interactive hover transformations      │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 .icon {
-  height: 2rem;
+  height: 2rem;                   /* Consistent icon sizing */
   transition: transform var(--transition-speed-fast) var(--transition-timing-function);
 }
 
-/* CORRECTED HOVER EFFECT: Target the wrapper to scale the icon inside */
+/* Enhanced icon hover effects with proper targeting */
 .icon-link:hover .icon,
 .theme-toggle-wrapper:hover .icon {
-  transform: scale(1.2); /* Zoom effect for all icons. */
+  transform: scale(1.2);          /* Zoom effect for all icons */
 }
 
-/* Enhanced theme toggle animation */
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  THEME TOGGLE SYSTEM                                                │
+    │  Advanced theme switching control with rotation animation           │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 .theme-toggle-wrapper img {
   transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .theme-toggle-wrapper:hover img {
-  transform: rotate(180deg) scale(1.2);
+  transform: rotate(180deg) scale(1.2);  /* Dramatic rotation and scale */
 }
 
+/* Interactive wrapper styling */
 .icon-link {
-    display: inline-block; /* Ensures the link takes up space */
-    cursor: pointer;
+  display: inline-block;          /* Ensure proper link spacing */
+  cursor: pointer;
 }
 
 .theme-toggle-wrapper {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-
-/* --- BUTTONS --- */
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  BUTTON COMPONENT SYSTEM                                            │
+    │  Primary and secondary button styles with smooth interactions       │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 .btn-container {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 1rem;                      /* Consistent spacing between buttons */
 }
 
+/* Universal button foundation */
 .btn {
   font-weight: 600;
   transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
@@ -589,60 +888,82 @@ footer p {
 }
 
 .btn:hover {
-  transform: translateY(-2px) scale(1.02);
+  transform: translateY(-2px) scale(1.02);  /* Lift and scale on hover */
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* Primary Button Style */
+/* Primary button styling (filled) */
 .btn-color-1,
 .btn-color-2:hover {
   background-color: var(--color-text-dark);
   color: var(--color-white);
 }
 
-/* Secondary/Outlined Button Style */
+/* Secondary button styling (outlined) */
 .btn-color-2 {
   background: none;
   border: 1px solid var(--color-text-dark);
   color: var(--color-text-dark);
 }
 
+/* Project-specific button styling */
 .project-btn {
   color: var(--color-text-dark);
   border-color: var(--color-text-dark);
 }
 
-/* Utility class to prevent image download */
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  CONTENT PROTECTION SYSTEM                                          │
+    │  Utility class to prevent image downloads and unwanted interactions │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 .no-download {
-  pointer-events: none; /* Prevents clicks, taps, and hover effects */
-  -webkit-touch-callout: none; /* Disables the callout menu on iOS Safari */
-  -webkit-user-select: none; /* Prevents selection in Chrome, Safari, & Opera */
-  -khtml-user-select: none; /* For older Konqueror browsers */
-  -moz-user-select: none; /* For Firefox */
-  -ms-user-select: none; /* For Internet Explorer & Edge */
-  user-select: none; /* Standard syntax */
+  pointer-events: none;           /* Disable all pointer interactions */
+  -webkit-touch-callout: none;    /* Disable iOS Safari callout menu */
+  -webkit-user-select: none;      /* Prevent selection in WebKit browsers */
+  -khtml-user-select: none;       /* Legacy Konqueror browser support */
+  -moz-user-select: none;         /* Firefox selection prevention */
+  -ms-user-select: none;          /* Internet Explorer/Edge support */
+  user-select: none;              /* Standard property */
 }
 
 
-/* ======================================================= */
-/* ! 12. ANIMATIONS & EFFECTS                              */
-/* ======================================================= */
+/* 
+    ═══════════════════════════════════════════════════════════════════════════
+    SECTION 11: ANIMATION & MOTION DESIGN SYSTEM
+    ═══════════════════════════════════════════════════════════════════════════
+    
+    Comprehensive animation framework featuring scroll-reveal effects,
+    text transitions, and keyframe animations. Employs organic easing
+    functions and performance-optimized transforms for smooth interactions.
+*/
 
-/* --- SCROLL REVEAL --- */
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  SCROLL-REVEAL ANIMATION SYSTEM                                     │
+    │  Viewport-triggered animations for progressive content disclosure   │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 .scroll-reveal {
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 0;                     /* Initial hidden state */
+  transform: translateY(20px);    /* Start position below final location */
   transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* This class is added by JavaScript when the element is visible in the viewport. */
+/* Visible state triggered by JavaScript intersection observer */
 .scroll-reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1;                     /* Fully visible */
+  transform: translateY(0);       /* Final position */
 }
 
-/* --- FADE IN UP KEYFRAMES (Used on Profile section) --- */
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  ENTRANCE ANIMATION KEYFRAMES                                       │
+    │  Reusable fade-in-up animation for profile section elements         │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 @keyframes fade-in-up {
   from {
     opacity: 0;
@@ -654,7 +975,12 @@ footer p {
   }
 }
 
-/* --- ROLE TEXT WIPE ANIMATION --- */
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  DYNAMIC TEXT ANIMATION SYSTEM                                      │
+    │  Advanced text transitions using clip-path for role text changes    │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 #role-text-container {
   display: block;
   width: 250px;
@@ -666,46 +992,60 @@ footer p {
 #role-text {
   display: inline-block;
   position: relative;
-  will-change: clip-path; /* Performance optimization for the animation. */
+  will-change: clip-path;         /* Performance optimization hint */
 }
 
-/* State classes added by JavaScript to trigger animations. */
+/* Animation state classes controlled by JavaScript */
 .hiding #role-text {
   animation: wipe-out var(--wipe-duration) var(--wipe-ease) forwards;
 }
 
 .revealing #role-text {
-  clip-path: inset(0 100% 0 0); /* Hides the text before animating in. */
+  clip-path: inset(0 100% 0 0);   /* Initially hidden via clipping */
   animation: wipe-in var(--wipe-duration) var(--wipe-ease) forwards;
 }
 
-/* Keyframes for the wipe animation. */
+/* Text wipe animation keyframes */
 @keyframes wipe-out {
-  from { clip-path: inset(0 0 0 0); }
-  to   { clip-path: inset(0 100% 0 0); }
+  from { clip-path: inset(0 0 0 0); }      /* Fully visible */
+  to   { clip-path: inset(0 100% 0 0); }   /* Completely hidden */
 }
 
 @keyframes wipe-in {
-  from { clip-path: inset(0 100% 0 0); }
-  to   { clip-path: inset(0 0 0 0); }
+  from { clip-path: inset(0 100% 0 0); }   /* Completely hidden */
+  to   { clip-path: inset(0 0 0 0); }      /* Fully visible */
 }
 
 
-/* ======================================================= */
-/* ! 13. PRELOADER                                         */
-/* ======================================================= */
+/* 
+    ═══════════════════════════════════════════════════════════════════════════
+    SECTION 12: PRELOADER ANIMATION SYSTEM
+    ═══════════════════════════════════════════════════════════════════════════
+    
+    Sophisticated loading animation with gooey blob effects and smooth
+    transitions. Provides engaging visual feedback during initial page load
+    and asset preparation phases.
+*/
 
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  GOOEY BLOB LOADER CONTAINER                                        │
+    │  Main container for the organic loading animation                   │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 .gooey {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 142px;
   height: 40px;
-  margin: -20px 0 0 -71px;
+  margin: -20px 0 0 -71px;        /* Perfect centering offset */
   background: transparent;
-  filter: contrast(20);
-  z-index: 9999;
+  filter: contrast(20);           /* Creates gooey blob effect */
+  z-index: 9999;                 /* Ensure loader appears above all content */
 }
+
+/* Main moving dot element */
 .gooey .dot {
   position: absolute;
   width: 12px;
@@ -718,12 +1058,15 @@ footer p {
   transform: translateX(0);
   animation: dot 2.8s infinite;
 }
+
+/* Static dots container */
 .gooey .dots {
   transform: translateX(0);
   margin-top: 14px;
   margin-left: 31px;
   animation: dots 2.8s infinite;
 }
+
 .gooey .dots span {
   display: block;
   float: left;
@@ -735,27 +1078,71 @@ footer p {
   border-radius: 50%;
 }
 
-/* Preloader Keyframes */
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  PRELOADER ANIMATION KEYFRAMES                                      │
+    │  Cross-browser compatible keyframes for blob animation              │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
+
+/* Moving dot animation */
 @-moz-keyframes dot { 50% { transform: translateX(96px); } }
 @-webkit-keyframes dot { 50% { transform: translateX(96px); } }
 @-o-keyframes dot { 50% { transform: translateX(96px); } }
 @keyframes dot { 50% { transform: translateX(96px); } }
+
+/* Static dots counter-animation */
 @-moz-keyframes dots { 50% { transform: translateX(-31px); } }
 @-webkit-keyframes dots { 50% { transform: translateX(-31px); } }
 @-o-keyframes dots { 50% { transform: translateX(-31px); } }
 @keyframes dots { 50% { transform: translateX(-31px); } }
 
-/* --- PRELOADER & MAIN CONTENT VISIBILITY --- */
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  MODAL ENTRANCE ANIMATIONS                                          │
+    │  Smooth animations for modal popup appearances                      │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
+@keyframes slideInTitle {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInItem {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  PAGE TRANSITION SYSTEM                                             │
+    │  Smooth transitions between preloader and main content              │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 #preloader.hidden {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.5s ease-out, visibility 0s 0.5s;
 }
+
 #main-content {
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.5s ease-in;
 }
+
 #main-content.visible {
   visibility: visible;
   opacity: 1;
@@ -887,4 +1274,1107 @@ article {
 
 article:hover {
   transform: translateX(5px);
+}
+
+
+/* ======================================================= */
+/* ! EDUCATION POPUP MODAL - PREMIUM ANIMATION             */
+/* ======================================================= */
+
+/* Education container with enhanced click feedback */
+.details-container.education-clickable {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.details-container.education-clickable::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.details-container.education-clickable:hover::before {
+  left: 100%;
+}
+
+/* Experience container with enhanced click feedback */
+.details-container.experience-clickable {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.details-container.experience-clickable::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.details-container.experience-clickable:hover::before {
+  left: 100%;
+}
+
+/* Modal overlay with ultra-smooth backdrop blur */
+.education-modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              backdrop-filter 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0s linear 0.6s;
+  will-change: backdrop-filter, opacity;
+  backface-visibility: hidden;
+}
+
+.education-modal.show {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  opacity: 1;
+  visibility: visible;
+  transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              backdrop-filter 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0s linear 0s;
+}
+
+/* Modal content with ultra-smooth scaling animation */
+.education-modal-content {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 2.5rem;
+  border-radius: 2rem;
+  width: 90%;
+  max-width: 520px;
+  position: fixed;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate3d(-50%, -50%, 0) scale3d(0.05, 0.05, 1);
+  opacity: 0;
+  transition: none;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  will-change: transform, opacity, filter;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  z-index: 1001;
+}
+
+.education-modal.show .education-modal-content {
+  /* Animation is handled by JavaScript for smoother control */
+  pointer-events: auto;
+}
+
+/* iOS Liquid Glass Close Button */
+.education-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  overflow: hidden;
+  
+  /* Ultra-premium liquid glass background */
+  background: 
+    linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.25) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+  
+  /* Advanced backdrop blur for liquid glass effect */
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  
+  /* Subtle border with gradient */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  /* Ultra-smooth transitions with spring physics */
+  transition: 
+    all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    backdrop-filter 0.3s ease,
+    box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* Premium multi-layered shadow system */
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+  
+  /* Hardware acceleration */
+  transform: translateZ(0) scale3d(1, 1, 1);
+  will-change: transform, backdrop-filter, box-shadow;
+}
+
+/* SVG icon styling */
+.education-close .close-icon {
+  color: var(--color-text-light);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  stroke-width: 2.5;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* Liquid glass overlay for dynamic effects */
+.liquid-glass-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: 
+    radial-gradient(circle at 30% 30%, 
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%
+    );
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+}
+
+/* Hover state - Enhanced liquid glass effect */
+.education-close:hover {
+  transform: translateZ(0) scale3d(1.08, 1.08, 1);
+  
+  /* Enhanced backdrop blur on hover */
+  backdrop-filter: blur(25px) saturate(200%);
+  -webkit-backdrop-filter: blur(25px) saturate(200%);
+  
+  /* Brighter glass effect */
+  background: 
+    linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.35) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+  
+  border-color: rgba(255, 255, 255, 0.35);
+  
+  /* Enhanced shadow system */
+  box-shadow: 
+    0 12px 48px rgba(0, 0, 0, 0.16),
+    0 6px 24px rgba(0, 0, 0, 0.12),
+    0 3px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+  
+  /* Add liquid morphing animation */
+  animation: educationLiquidMorph 2s ease-in-out infinite;
+}
+
+.education-close:hover .close-icon {
+  transform: rotate(90deg) scale(1.1);
+  stroke-width: 3;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
+.education-close:hover .liquid-glass-overlay {
+  opacity: 1;
+  background: 
+    radial-gradient(circle at 30% 30%, 
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0.2) 40%,
+      rgba(255, 255, 255, 0.05) 80%,
+      transparent 100%
+    );
+}
+
+/* Active/pressed state - Liquid compression effect */
+.education-close:active {
+  transform: translateZ(0) scale3d(0.92, 0.92, 1);
+  transition-duration: 0.1s;
+  
+  /* Compressed glass effect */
+  backdrop-filter: blur(30px) saturate(220%);
+  -webkit-backdrop-filter: blur(30px) saturate(220%);
+  
+  background: 
+    linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(255, 255, 255, 0.25) 50%,
+      rgba(255, 255, 255, 0.15) 100%
+    );
+  
+  /* Compressed shadow */
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    0 1px 4px rgba(0, 0, 0, 0.1),
+    inset 0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  
+  /* Stop morphing animation when pressed */
+  animation: none;
+}
+
+.education-close:active .close-icon {
+  transform: rotate(90deg) scale(0.85);
+  transition-duration: 0.1s;
+}
+
+.education-close:active .liquid-glass-overlay {
+  opacity: 0.7;
+  transform: scale(0.8);
+  transition-duration: 0.1s;
+}
+
+/* Focus state for accessibility */
+.education-close:focus {
+  outline: none;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    0 0 0 3px rgba(var(--color-primary-rgb), 0.3);
+}
+
+/* iOS Liquid Glass entrance animation for education modal */
+@keyframes educationLiquidGlassEntrance {
+  0% {
+    opacity: 0;
+    transform: translateZ(0) scale3d(0.3, 0.3, 1) rotate(-180deg);
+    backdrop-filter: blur(0px) saturate(100%);
+    box-shadow: none;
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateZ(0) scale3d(1.2, 1.2, 1) rotate(-90deg);
+    backdrop-filter: blur(15px) saturate(160%);
+  }
+  80% {
+    transform: translateZ(0) scale3d(0.95, 0.95, 1) rotate(0deg);
+    backdrop-filter: blur(22px) saturate(190%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateZ(0) scale3d(1, 1, 1) rotate(0deg);
+    backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.12),
+      0 4px 16px rgba(0, 0, 0, 0.08),
+      0 2px 8px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Liquid ripple effect for education close button */
+.education-close::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: 
+    radial-gradient(circle, 
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      transparent 100%
+    );
+  transform: translate(-50%, -50%);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.education-close:active::before {
+  width: 60px;
+  height: 60px;
+  opacity: 1;
+  transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Entrance animation trigger for education modal */
+.education-modal.show .education-close {
+  animation: educationLiquidGlassEntrance 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s both;
+}
+
+/* Liquid glass morphing on interaction for education modal */
+@keyframes educationLiquidMorph {
+  0% { border-radius: 50%; }
+  50% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  100% { border-radius: 50%; }
+}
+
+/* Modal title with gradient effect */
+.education-modal h2 {
+  color: var(--color-text-dark); /* Fallback color */
+  background: linear-gradient(135deg, var(--color-text-dark), var(--color-text-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideInTitle 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+/* Education details with staggered animation */
+.education-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.education-details li {
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--color-white), rgba(248, 249, 250, 0.8));
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  transform: translate3d(-30px, 0, 0);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+
+.education-details li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--color-text-dark), var(--color-text-light));
+  transition: width 0.3s ease;
+}
+
+.education-details li:hover::before {
+  width: 8px;
+}
+
+.education-details li:hover {
+  transform: translate3d(8px, -2px, 0);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  background: linear-gradient(135deg, var(--color-white), rgba(0, 0, 0, 0.02));
+}
+
+.education-details li:nth-child(1) {
+  animation: slideInItem 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+}
+
+.education-details li:nth-child(2) {
+  animation: slideInItem 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+
+.education-details li:nth-child(3) {
+  animation: slideInItem 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+}
+
+.education-degree {
+  font-weight: 600;
+  color: var(--color-text-dark);
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.education-institution {
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+
+.education-year {
+  color: var(--color-text-dark);
+  font-weight: 600;
+  float: right;
+  background: rgba(0, 0, 0, 0.08);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+.education-cgpa {
+  color: var(--color-text-light);
+  font-weight: 600;
+  font-size: 0.9rem;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  display: inline-block;
+  margin-top: 0.3rem;
+}
+
+/* Dark mode styles with enhanced glass effect */
+[data-theme="dark"] .education-modal-content {
+  background: rgba(42, 42, 42, 0.95);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .education-modal h2 {
+  background: linear-gradient(135deg, var(--color-text-dark), #a0a0a0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="dark"] .education-details li {
+  background: linear-gradient(135deg, rgba(42, 42, 42, 0.8), rgba(26, 26, 26, 0.6));
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .education-details li:hover {
+  background: linear-gradient(135deg, rgba(42, 42, 42, 0.9), rgba(255, 255, 255, 0.02));
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .education-close {
+  /* Dark liquid glass background */
+  background: 
+    linear-gradient(135deg, 
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(0, 0, 0, 0.2) 100%
+    );
+  
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--color-text-dark);
+  
+  /* Enhanced shadows for dark theme */
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .education-close:hover {
+  /* Enhanced dark liquid glass on hover */
+  background: 
+    linear-gradient(135deg, 
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+  
+  border-color: rgba(255, 255, 255, 0.25);
+  
+  /* Enhanced dark shadows */
+  box-shadow: 
+    0 12px 48px rgba(0, 0, 0, 0.5),
+    0 6px 24px rgba(0, 0, 0, 0.4),
+    0 3px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .education-close:active {
+  /* Dark compressed glass effect */
+  background: 
+    linear-gradient(135deg, 
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
+  
+  /* Dark compressed shadow */
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.6),
+    0 2px 8px rgba(0, 0, 0, 0.5),
+    0 1px 4px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .education-close:focus {
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+    0 0 0 3px rgba(var(--color-primary-rgb), 0.4);
+}
+
+/* Modal title with gradient effect */
+.education-modal h2 {
+  background: linear-gradient(135deg, var(--color-text-dark), var(--color-text-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideInTitle 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+/* Experience Modal Styles (identical to education modal) */
+.experience-modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              backdrop-filter 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0s linear 0.6s;
+  will-change: backdrop-filter, opacity;
+  backface-visibility: hidden;
+}
+
+.experience-modal.show {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  opacity: 1;
+  visibility: visible;
+  transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              backdrop-filter 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0s linear 0s;
+}
+
+/* Modal content with ultra-smooth scaling animation */
+.experience-modal-content {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 2.5rem;
+  border-radius: 2rem;
+  width: 90%;
+  max-width: 520px;
+  position: fixed;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate3d(-50%, -50%, 0) scale3d(0.05, 0.05, 1);
+  opacity: 0;
+  transition: none;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  will-change: transform, opacity, filter;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  z-index: 1001;
+}
+
+.experience-modal.show .experience-modal-content {
+  /* Animation is handled by JavaScript for smoother control */
+  pointer-events: auto;
+}
+
+/* iOS Liquid Glass Close Button for Experience Modal */
+.experience-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  overflow: hidden;
+  
+  /* Ultra-premium liquid glass background */
+  background: 
+    linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.25) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+  
+  /* Advanced backdrop blur for liquid glass effect */
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  
+  /* Subtle border with gradient */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  /* Ultra-smooth transitions with spring physics */
+  transition: 
+    all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    backdrop-filter 0.3s ease,
+    box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* Premium multi-layered shadow system */
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+  
+  /* Hardware acceleration */
+  transform: translateZ(0) scale3d(1, 1, 1);
+  will-change: transform, backdrop-filter, box-shadow;
+}
+
+/* SVG icon styling for experience close button */
+.experience-close .close-icon {
+  color: var(--color-text-light);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  stroke-width: 2.5;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* Hover state - Enhanced liquid glass effect */
+.experience-close:hover {
+  transform: translateZ(0) scale3d(1.08, 1.08, 1);
+  
+  /* Enhanced backdrop blur on hover */
+  backdrop-filter: blur(25px) saturate(200%);
+  -webkit-backdrop-filter: blur(25px) saturate(200%);
+  
+  /* Brighter glass effect */
+  background: 
+    linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.35) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+  
+  border-color: rgba(255, 255, 255, 0.35);
+  
+  /* Enhanced shadow system */
+  box-shadow: 
+    0 12px 48px rgba(0, 0, 0, 0.16),
+    0 6px 24px rgba(0, 0, 0, 0.12),
+    0 3px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.experience-close:hover .close-icon {
+  transform: rotate(90deg) scale(1.1);
+  stroke-width: 3;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
+.experience-close:hover .liquid-glass-overlay {
+  opacity: 1;
+  background: 
+    radial-gradient(circle at 30% 30%, 
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0.2) 40%,
+      rgba(255, 255, 255, 0.05) 80%,
+      transparent 100%
+    );
+}
+
+/* Active/pressed state - Liquid compression effect */
+.experience-close:active {
+  transform: translateZ(0) scale3d(0.92, 0.92, 1);
+  transition-duration: 0.1s;
+  
+  /* Compressed glass effect */
+  backdrop-filter: blur(30px) saturate(220%);
+  -webkit-backdrop-filter: blur(30px) saturate(220%);
+  
+  background: 
+    linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(255, 255, 255, 0.25) 50%,
+      rgba(255, 255, 255, 0.15) 100%
+    );
+  
+  /* Compressed shadow */
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    0 1px 4px rgba(0, 0, 0, 0.1),
+    inset 0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.experience-close:active .close-icon {
+  transform: rotate(90deg) scale(0.85);
+  transition-duration: 0.1s;
+}
+
+.experience-close:active .liquid-glass-overlay {
+  opacity: 0.7;
+  transform: scale(0.8);
+  transition-duration: 0.1s;
+}
+
+/* Focus state for accessibility */
+.experience-close:focus {
+  outline: none;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    0 0 0 3px rgba(var(--color-primary-rgb), 0.3);
+}
+
+/* Modal title with gradient effect */
+.experience-modal h2 {
+  background: linear-gradient(135deg, var(--color-text-dark), var(--color-text-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideInTitle 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+/* Experience details with staggered animation */
+.experience-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.experience-details li {
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--color-white), rgba(248, 249, 250, 0.8));
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  transform: translate3d(-30px, 0, 0);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+
+.experience-details li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--color-text-dark), var(--color-text-light));
+  transition: width 0.3s ease;
+}
+
+.experience-details li:hover::before {
+  width: 8px;
+}
+
+.experience-details li:hover {
+  transform: translate3d(8px, -2px, 0);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  background: linear-gradient(135deg, var(--color-white), rgba(0, 0, 0, 0.02));
+}
+
+.experience-details li:nth-child(1) {
+  animation: slideInItem 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+}
+
+.experience-details li:nth-child(2) {
+  animation: slideInItem 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+
+.experience-details li:nth-child(3) {
+  animation: slideInItem 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+}
+
+.experience-role {
+  font-weight: 600;
+  color: var(--color-text-dark);
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.experience-company {
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.experience-period {
+  color: var(--color-text-dark);
+  font-weight: 600;
+  float: right;
+  background: rgba(0, 0, 0, 0.08);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+/* Mobile-responsive styling for experience period */
+@media (max-width: 768px) {
+  .experience-period {
+    float: none;
+    display: block;
+    text-align: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    clear: both;
+  }
+}
+
+/* Experience description styling */
+
+/* iOS Liquid Glass entrance animation for experience modal */
+@keyframes experienceLiquidGlassEntrance {
+  0% {
+    opacity: 0;
+    transform: translateZ(0) scale3d(0.3, 0.3, 1) rotate(-180deg);
+    backdrop-filter: blur(0px) saturate(100%);
+    box-shadow: none;
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateZ(0) scale3d(1.2, 1.2, 1) rotate(-90deg);
+    backdrop-filter: blur(15px) saturate(160%);
+  }
+  80% {
+    transform: translateZ(0) scale3d(0.95, 0.95, 1) rotate(0deg);
+    backdrop-filter: blur(22px) saturate(190%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateZ(0) scale3d(1, 1, 1) rotate(0deg);
+    backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.12),
+      0 4px 16px rgba(0, 0, 0, 0.08),
+      0 2px 8px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Liquid ripple effect for experience close button */
+.experience-close::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: 
+    radial-gradient(circle, 
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      transparent 100%
+    );
+  transform: translate(-50%, -50%);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.experience-close:active::before {
+  width: 60px;
+  height: 60px;
+  opacity: 1;
+  transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Entrance animation trigger for experience modal */
+.experience-modal.show .experience-close {
+  animation: experienceLiquidGlassEntrance 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s both;
+}
+
+/* Liquid glass morphing on interaction for experience modal */
+@keyframes experienceLiquidMorph {
+  0% { border-radius: 50%; }
+  50% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  100% { border-radius: 50%; }
+}
+
+.experience-close:hover {
+  animation: experienceLiquidMorph 2s ease-in-out infinite;
+}
+
+.experience-close:active {
+  animation: none;
+}
+
+/* Dark mode styles for experience modal */
+[data-theme="dark"] .experience-modal-content {
+  background: rgba(42, 42, 42, 0.95);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .experience-modal h2 {
+  background: linear-gradient(135deg, var(--color-text-dark), #a0a0a0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="dark"] .experience-details li {
+  background: linear-gradient(135deg, rgba(42, 42, 42, 0.8), rgba(26, 26, 26, 0.6));
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .experience-details li:hover {
+  background: linear-gradient(135deg, rgba(42, 42, 42, 0.9), rgba(255, 255, 255, 0.02));
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .experience-close {
+  /* Dark liquid glass background */
+  background: 
+    linear-gradient(135deg, 
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(0, 0, 0, 0.2) 100%
+    );
+  
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--color-text-dark);
+  
+  /* Enhanced shadows for dark theme */
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .experience-close:hover {
+  /* Enhanced dark liquid glass on hover */
+  background: 
+    linear-gradient(135deg, 
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+  
+  border-color: rgba(255, 255, 255, 0.25);
+  
+  /* Enhanced dark shadows */
+  box-shadow: 
+    0 12px 48px rgba(0, 0, 0, 0.5),
+    0 6px 24px rgba(0, 0, 0, 0.4),
+    0 3px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .experience-close:active {
+  /* Dark compressed glass effect */
+  background: 
+    linear-gradient(135deg, 
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
+  
+  /* Dark compressed shadow */
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.6),
+    0 2px 8px rgba(0, 0, 0, 0.5),
+    0 1px 4px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .experience-close:focus {
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+    0 0 0 3px rgba(var(--color-primary-rgb), 0.4);
+}
+
+[data-theme="dark"] .experience-close::before {
+  background: 
+    radial-gradient(circle, 
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      transparent 100%
+    );
+}
+
+[data-theme="dark"] .experience-close:hover .liquid-glass-overlay {
+  background: 
+    radial-gradient(circle at 30% 30%, 
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(255, 255, 255, 0.2) 40%,
+      rgba(255, 255, 255, 0.05) 80%,
+      transparent 100%
+    );
 }

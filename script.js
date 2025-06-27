@@ -1,46 +1,75 @@
-/*
-=================================================================
-  My Portfolio - Main JavaScript File
-  Description: This file handles all the interactive functionality
-               for the portfolio website.
-
-  TABLE OF CONTENTS
-  ---------------------------------------------------
-  I.    MOBILE NAVIGATION (HAMBURGER MENU)
-  II.   DYNAMIC ROLE TEXT ANIMATION
-  III.  SCROLL REVEAL ANIMATION
-  IV.   DARK MODE / THEME TOGGLER
-  V.    PRELOADER LOGIC
-  VI.   ENHANCED SMOOTH SCROLLING
-  VII.  ENHANCED PAGE LOAD ANIMATION
-=================================================================
+/* 
+    ███████████████████████████████████████████████████████████████████████████
+    ███                     PORTFOLIO INTERACTION ENGINE                    ███
+    ███████████████████████████████████████████████████████████████████████████
+    
+    PROJECT: Shyam Sundar Paul - Professional Portfolio Website
+    AUTHOR:  Shyam Sundar Paul
+    PURPOSE: Complete interactive functionality and behavior management
+    
+    FUNCTIONALITY OVERVIEW:
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    This JavaScript engine powers all dynamic behaviors including:
+    • Responsive navigation with smooth hamburger menu transitions
+    • Dynamic text animations with organic timing
+    • Intersection Observer-based scroll reveal system
+    • Intelligent theme switching with persistent storage
+    • Premium loading experience with smooth transitions
+    • Advanced modal systems with liquid glass effects
+    • Cross-platform touch and click event handling
+    
+    PERFORMANCE OPTIMIZATIONS:
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    • Debounced event handlers to prevent excessive firing
+    • RequestAnimationFrame for smooth animations
+    • Passive event listeners where appropriate
+    • Efficient DOM queries with caching
+    • Hardware-accelerated transforms and transitions
+    
+    ACCESSIBILITY FEATURES:
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    • Keyboard navigation support (ESC to close modals)
+    • Focus management for interactive elements
+    • Screen reader compatible structure
+    • Touch-friendly interaction targets
+    • Reduced motion considerations
+    
+    ███████████████████████████████████████████████████████████████████████████
 */
 
 
+/* 
+    ═══════════════════════════════════════════════════════════════════════════
+    MODULE 1: RESPONSIVE NAVIGATION SYSTEM
+    ═══════════════════════════════════════════════════════════════════════════
+    
+    Handles mobile hamburger menu functionality with smooth animations,
+    outside-click detection, and cross-platform touch support. Ensures
+    consistent navigation experience across all device types.
+*/
+
 /**
- * ===================================================================
- * I. MOBILE NAVIGATION (HAMBURGER MENU)
- *
- * Purpose: To show and hide the navigation menu on mobile devices
- * when the user clicks the hamburger icon.
- * ===================================================================
+ * ┌─────────────────────────────────────────────────────────────────────┐
+ * │  HAMBURGER MENU TOGGLE FUNCTION                                     │
+ * │  Core function for showing/hiding mobile navigation menu            │
+ * └─────────────────────────────────────────────────────────────────────┘
  */
 function toggleMenu() {
-  // Find the two elements we need to change: the menu itself and the icon.
+  // Retrieve navigation elements for state manipulation
   const menu = document.querySelector(".menu-links");
   const icon = document.querySelector(".hamburger-icon");
 
-  // The .toggle() method is a shortcut to add a class if it's not there,
-  // or remove it if it is. The 'open' class in our CSS contains all the
-  // styles to show the menu and animate the icon into an 'X'.
+  // Toggle open/closed state using CSS classes
+  // The 'open' class triggers all visual transformations defined in CSS
   menu.classList.toggle("open");
   icon.classList.toggle("open");
 }
 
 /**
- * Close mobile menu when clicking outside of it
- * Purpose: Improves user experience by allowing users to close the menu
- * by tapping anywhere outside the menu area on mobile devices.
+ * ┌─────────────────────────────────────────────────────────────────────┐
+ * │  OUTSIDE CLICK DETECTION SYSTEM                                     │
+ * │  Enhances UX by allowing menu closure via outside taps/clicks       │
+ * └─────────────────────────────────────────────────────────────────────┘
  */
 document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener('click', (event) => {
@@ -48,9 +77,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const hamburgerMenu = document.querySelector(".hamburger-menu");
     const isMenuOpen = menu && menu.classList.contains('open');
     
-    // Check if menu is open and click is outside the hamburger menu area
+    // Close menu if user clicks outside the hamburger menu area
     if (isMenuOpen && hamburgerMenu && !hamburgerMenu.contains(event.target)) {
-      // Close the menu
       const icon = document.querySelector(".hamburger-icon");
       menu.classList.remove("open");
       if (icon) {
@@ -61,164 +89,182 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-/**
- * ===================================================================
- * II. DYNAMIC ROLE TEXT ANIMATION
- *
- * Purpose: To create an eye-catching "wipe" animation that cycles
- * through different job titles in the profile section.
- * ===================================================================
- */
-// We wrap this in a 'DOMContentLoaded' event listener to ensure the HTML is fully
-// loaded before we try to find and manipulate its elements.
+/* 
+    ═══════════════════════════════════════════════════════════════════════════
+    MODULE 2: DYNAMIC TEXT ANIMATION ENGINE
+    ═══════════════════════════════════════════════════════════════════════════
+    
+    Creates engaging role text animations using CSS clip-path transitions.
+    Features smooth text wiping effects that cycle through professional
+    titles with organic timing and seamless transitions.
+*/
+
 document.addEventListener("DOMContentLoaded", () => {
   
-  // --- Configuration ---
-  const roles = ["Business Analyst", "Data Analyst"]; // The list of roles to display.
-  const pauseBetweenRoles = 2000; // The wait time between roles in milliseconds (2 seconds).
-  let currentRoleIndex = 0; // We start with the first role in the array.
+  /* 
+      ┌─────────────────────────────────────────────────────────────────────┐
+      │  ANIMATION CONFIGURATION                                            │
+      │  Customizable settings for role text cycling behavior               │
+      └─────────────────────────────────────────────────────────────────────┘
+  */
+  const roles = ["Business Analyst", "Data Analyst"];  // Professional titles to display
+  const pauseBetweenRoles = 2000;                      // Pause duration between transitions (ms)
+  let currentRoleIndex = 0;                            // Current position in roles array
 
-  // --- Get HTML Elements ---
+  /* 
+      ┌─────────────────────────────────────────────────────────────────────┐
+      │  DOM ELEMENT ACQUISITION                                            │
+      │  Secure element retrieval with error handling                       │
+      └─────────────────────────────────────────────────────────────────────┘
+  */
   const roleTextContainer = document.getElementById("role-text-container");
   const roleText = document.getElementById("role-text");
 
-  // If for some reason these elements don't exist, log an error and stop the script.
+  // Graceful degradation if elements are missing
   if (!roleTextContainer || !roleText) {
     console.error("Role text animation elements not found!");
     return;
   }
 
   /**
-   * This is the main function that controls the animation loop.
+   * ┌─────────────────────────────────────────────────────────────────────┐
+   * │  ROLE CYCLING ORCHESTRATOR                                          │
+   * │  Manages the complete animation sequence for role text transitions  │
+   * └─────────────────────────────────────────────────────────────────────┘
    */
   function cycleRoles() {
-    // 1. HIDE: Start hiding the current text by adding the 'hiding' class.
-    //    This triggers the 'wipe-out' CSS animation.
+    // PHASE 1: Initiate text hiding animation
     roleTextContainer.classList.add("hiding");
 
-    // 2. WAIT: We need to wait for the 'wipe-out' animation to finish before changing the text.
-    //    We use an event listener that fires exactly once for this animation.
+    // PHASE 2: Wait for hide animation completion
     roleTextContainer.addEventListener('animationend', function onWipeOutEnd(event) {
-      // Ensure we're reacting to the correct animation.
+      // Verify we're handling the correct animation event
       if (event.animationName !== 'wipe-out') return;
 
-      // This listener has done its job, so we remove it to prevent it from firing multiple times.
+      // Clean up event listener to prevent memory leaks
       this.removeEventListener('animationend', onWipeOutEnd);
 
-      // 3. UPDATE: Now that the text is hidden, update it to the next role.
-      //    The '%' (modulo) operator ensures the index loops back to 0 after the last role.
+      // PHASE 3: Update to next role in sequence
       currentRoleIndex = (currentRoleIndex + 1) % roles.length;
       roleText.textContent = roles[currentRoleIndex];
 
-      // 4. REVEAL: Reveal the new text by swapping the 'hiding' class for 'revealing'.
-      //    This triggers the 'wipe-in' CSS animation.
+      // PHASE 4: Initiate text revealing animation
       roleTextContainer.classList.remove("hiding");
       roleTextContainer.classList.add("revealing");
 
-      // 5. WAIT AGAIN: Wait for the 'wipe-in' animation to finish.
+      // PHASE 5: Wait for reveal animation completion
       this.addEventListener('animationend', function onWipeInEnd(event) {
         if (event.animationName !== 'wipe-in') return;
         
-        // Clean up the listener and the revealing class.
+        // Clean up and prepare for next cycle
         this.removeEventListener('animationend', onWipeInEnd);
         roleTextContainer.classList.remove("revealing");
 
-        // 6. REPEAT: Pause for a moment, then start the whole cycle over again by calling this function recursively.
+        // PHASE 6: Schedule next animation cycle
         setTimeout(cycleRoles, pauseBetweenRoles);
       });
     });
   }
 
-  // Start the very first animation cycle after a short initial delay.
+  // Initialize animation sequence with brief startup delay
   setTimeout(cycleRoles, 1000);
 });
 
 
-/**
- * ===================================================================
- * III. SCROLL REVEAL ANIMATION
- *
- * Purpose: To fade in content sections as the user scrolls down the
- * page, using the efficient Intersection Observer API.
- * ===================================================================
- */
+/* 
+    ═══════════════════════════════════════════════════════════════════════════
+    MODULE 3: INTERSECTION OBSERVER SCROLL REVEAL SYSTEM
+    ═══════════════════════════════════════════════════════════════════════════
+    
+    Modern, performant scroll-triggered animations using the Intersection
+    Observer API. Provides smooth fade-in effects as content enters the
+    viewport, with automatic cleanup and re-triggering capabilities.
+*/
 
-// --- Observer Configuration ---
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  OBSERVER CONFIGURATION                                             │
+    │  Fine-tuned settings for optimal animation timing                   │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 const scrollRevealOptions = {
-  // The animation will trigger when 20% of the element is visible in the viewport.
-  threshold: 0.2, 
+  threshold: 0.2,  // Trigger when 20% of element is visible for natural feel
 };
 
 /**
- * This is the "callback" function that the Intersection Observer runs whenever
- * an observed element's visibility changes.
- * @param {IntersectionObserverEntry[]} entries - A list of elements being observed.
- * @param {IntersectionObserver} observer - The observer instance itself.
+ * ┌─────────────────────────────────────────────────────────────────────┐
+ * │  INTERSECTION CALLBACK HANDLER                                      │
+ * │  Processes visibility changes and manages animation states          │
+ * └─────────────────────────────────────────────────────────────────────┘
  */
 const scrollRevealCallback = (entries, observer) => {
   entries.forEach((entry) => {
-    // If the element is intersecting (i.e., visible in) the viewport...
     if (entry.isIntersecting) {
-      // ...add the 'visible' class to trigger the fade-in animation.
+      // Element is entering viewport - trigger reveal animation
       entry.target.classList.add("visible");
-    } 
-    // Otherwise (if it's not visible)...
-    else {
-      // ...remove the class so the animation can trigger again if the user scrolls back up.
+    } else {
+      // Element is leaving viewport - reset for potential re-animation
       entry.target.classList.remove("visible");
     }
   });
 };
 
-// --- Observer Initialization ---
-// Create the observer instance with our callback function and options.
+/* 
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  OBSERVER INITIALIZATION AND BINDING                                │
+    │  Sets up monitoring for all scroll-reveal elements                  │
+    └─────────────────────────────────────────────────────────────────────┘
+*/
 const observer = new IntersectionObserver(scrollRevealCallback, scrollRevealOptions);
-
-// Find all elements on the page that have the 'scroll-reveal' class.
 const elementsToReveal = document.querySelectorAll(".scroll-reveal");
 
-// Tell the observer to start watching each of these elements.
+// Bind observer to all elements requiring scroll reveal
 elementsToReveal.forEach((element) => {
   observer.observe(element);
 });
 
 
-/**
- * ===================================================================
- * IV. DARK MODE / THEME TOGGLER
- *
- * Purpose: To switch between a light and dark theme and save the
- * user's preference in their browser for future visits.
- * ===================================================================
- */
+/* 
+    ═══════════════════════════════════════════════════════════════════════════
+    MODULE 4: INTELLIGENT THEME MANAGEMENT SYSTEM
+    ═══════════════════════════════════════════════════════════════════════════
+    
+    Comprehensive dark/light theme switching with persistent storage,
+    icon management, and smooth transitions. Handles both desktop and
+    mobile theme controls with consistent behavior across all elements.
+*/
+
 document.addEventListener("DOMContentLoaded", () => {
-  // Get the toggle buttons (for changing the src) and all icons that need to change.
+  /* 
+      ┌─────────────────────────────────────────────────────────────────────┐
+      │  THEME CONTROL ELEMENT ACQUISITION                                  │
+      │  Gathering all theme-related UI elements for management             │
+      └─────────────────────────────────────────────────────────────────────┘
+  */
   const themeToggleDesktopIcon = document.getElementById("theme-toggle-desktop");
   const themeToggleMobileIcon = document.getElementById("theme-toggle-mobile");
   const allThemeIcons = [themeToggleDesktopIcon, themeToggleMobileIcon];
   const allIcons = document.querySelectorAll('img[data-light-src]');
-  
-  // Get the clickable wrappers for the event listener
   const themeToggleWrappers = document.querySelectorAll(".theme-toggle-wrapper");
 
   /**
-   * Applies the selected theme to the page.
-   * @param {string} theme - The theme to apply ('dark' or 'light').
+   * ┌─────────────────────────────────────────────────────────────────────┐
+   * │  THEME APPLICATION ENGINE                                           │
+   * │  Applies selected theme across all interface elements               │
+   * └─────────────────────────────────────────────────────────────────────┘
    */
   const applyTheme = (theme) => {
-    // 1. Set the 'data-theme' attribute on the body. CSS uses this to switch variables.
+    // Update body data attribute for CSS theme switching
     document.body.setAttribute('data-theme', theme);
 
-    // 2. Update the main theme toggle icon source.
+    // Update main theme toggle icons
     const toggleIconSrc = theme === 'dark' ? './assets/theme_dark.png' : './assets/theme_light.png';
     allThemeIcons.forEach(icon => {
         if (icon) icon.src = toggleIconSrc;
     });
 
-    // 3. Update all other icons on the page based on their data attributes.
+    // Update all content icons based on theme
     allIcons.forEach(icon => {
-        // We check to make sure the icon is not one of the main theme toggle icons
-        // to avoid setting its src twice.
         const isThemeToggleIcon = icon.id === 'theme-toggle-desktop' || icon.id === 'theme-toggle-mobile';
         if (!isThemeToggleIcon) {
             const newSrc = theme === 'dark' ? icon.getAttribute('data-dark-src') : icon.getAttribute('data-light-src');
@@ -226,12 +272,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     
-    // 4. Save the user's preference in their browser's local storage.
+    // Persist user preference in browser storage
     localStorage.setItem('theme', theme);
   };
 
   /**
-   * Handles the click event on the theme toggle buttons.
+   * ┌─────────────────────────────────────────────────────────────────────┐
+   * │  THEME TOGGLE HANDLER                                               │
+   * │  Manages theme switching logic and state transitions                │
+   * └─────────────────────────────────────────────────────────────────────┘
    */
   const toggleTheme = () => {
     const currentTheme = document.body.getAttribute('data-theme');
@@ -239,50 +288,60 @@ document.addEventListener("DOMContentLoaded", () => {
     applyTheme(newTheme);
   };
 
-  // CORRECTED: Add click event listeners to the WRAPPER elements, not the icons themselves.
+  // Bind theme toggle functionality to wrapper elements
   themeToggleWrappers.forEach(wrapper => {
     wrapper.addEventListener("click", toggleTheme);
   });
 
-  // On page load, check for a saved theme in local storage. Default to 'light' if none is found.
+  // Initialize theme from storage or default to light mode
   const savedTheme = localStorage.getItem('theme') || 'light';
   applyTheme(savedTheme);
 });
 
 
+/* 
+    ═══════════════════════════════════════════════════════════════════════════
+    MODULE 5: PRELOADER TRANSITION SYSTEM
+    ═══════════════════════════════════════════════════════════════════════════
+    
+    Manages smooth transition from loading state to main content visibility.
+    Ensures all assets are loaded before revealing content, providing a
+    polished first impression and preventing layout shift issues.
+*/
+
 /**
- * ===================================================================
- * V. PRELOADER LOGIC
- *
- * Purpose: Hides the preloader and reveals the main content once
- * all page assets (images, scripts, etc.) have finished loading.
- * ===================================================================
+ * ┌─────────────────────────────────────────────────────────────────────┐
+ * │  LOAD COMPLETION HANDLER                                            │
+ * │  Orchestrates smooth transition from preloader to main content      │
+ * └─────────────────────────────────────────────────────────────────────┘
  */
 window.addEventListener('load', () => {
   const preloader = document.getElementById('preloader');
   const mainContent = document.getElementById('main-content');
 
+  // Initiate preloader fade-out sequence
   if (preloader) {
-    // Add the 'hidden' class to trigger the preloader's fade-out animation.
     preloader.classList.add('hidden');
   }
 
+  // Reveal main content with smooth transition
   if (mainContent) {
-    // Add the 'visible' class to trigger the main content's fade-in animation.
     mainContent.classList.add('visible');
   }
 });
 
 
-/**
- * ===================================================================
- * VI. ENHANCED SMOOTH SCROLLING
- *
- * Purpose: Add buttery smooth scrolling for navigation links
- * ===================================================================
- */
+/* 
+    ═══════════════════════════════════════════════════════════════════════════
+    MODULE 6: ENHANCED NAVIGATION SMOOTHING
+    ═══════════════════════════════════════════════════════════════════════════
+    
+    Provides buttery-smooth scrolling for anchor link navigation with
+    header offset compensation and automatic mobile menu closure.
+    Enhances user experience with organic motion design.
+*/
+
 document.addEventListener("DOMContentLoaded", () => {
-  // Get all navigation links that point to sections
   const navLinks = document.querySelectorAll('a[href^="#"]');
   
   navLinks.forEach(link => {
@@ -293,18 +352,18 @@ document.addEventListener("DOMContentLoaded", () => {
       const targetSection = document.querySelector(targetId);
       
       if (targetSection) {
-        // Calculate offset for navigation
+        // Calculate optimal scroll position with header compensation
         const headerOffset = 80;
         const elementPosition = targetSection.offsetTop;
         const offsetPosition = elementPosition - headerOffset;
         
-        // Ultra smooth scroll with custom easing
+        // Execute smooth scroll with enhanced easing
         window.scrollTo({
           top: offsetPosition,
           behavior: 'smooth'
         });
         
-        // Close mobile menu if open
+        // Auto-close mobile menu if currently open
         const menu = document.querySelector(".menu-links");
         const icon = document.querySelector(".hamburger-icon");
         if (menu && menu.classList.contains('open')) {
@@ -317,18 +376,21 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-/**
- * ===================================================================
- * VII. ENHANCED PAGE LOAD ANIMATION
- *
- * Purpose: Add smooth entrance animations for page elements
- * ===================================================================
- */
+/* 
+    ═══════════════════════════════════════════════════════════════════════════
+    MODULE 7: ENHANCED PAGE ENTRANCE ANIMATIONS
+    ═══════════════════════════════════════════════════════════════════════════
+    
+    Orchestrates sophisticated entrance animations for key interface elements
+    after page load completion. Creates engaging first impressions with
+    staggered animations and organic timing.
+*/
+
 window.addEventListener('load', () => {
   const preloader = document.getElementById('preloader');
   const mainContent = document.getElementById('main-content');
   
-  // Hide preloader and show main content smoothly
+  // Initialize preloader transition
   if (preloader) {
     preloader.classList.add('hidden');
   }
@@ -336,13 +398,13 @@ window.addEventListener('load', () => {
   if (mainContent) {
     mainContent.classList.add('visible');
     
-    // Add subtle entrance animations to key elements
+    // Orchestrate staggered entrance animations
     setTimeout(() => {
       const logo = document.querySelector('.logo');
       const navLinks = document.querySelectorAll('.nav-links a');
       const profileElements = document.querySelectorAll('#profile .section__text > *');
       
-      // Animate logo
+      // Animate brand logo with smooth entrance
       if (logo) {
         logo.style.opacity = '0';
         logo.style.transform = 'translateY(-20px)';
@@ -353,7 +415,7 @@ window.addEventListener('load', () => {
         }, 100);
       }
       
-      // Animate navigation links
+      // Animate navigation links with sequential timing
       navLinks.forEach((link, index) => {
         if (link.closest('.theme-toggle-wrapper')) return; // Skip theme toggle
         link.style.opacity = '0';
@@ -365,7 +427,7 @@ window.addEventListener('load', () => {
         }, 200 + (index * 100));
       });
       
-      // Animate profile text elements
+      // Animate profile content with elegant slide-in
       profileElements.forEach((element, index) => {
         element.style.opacity = '0';
         element.style.transform = 'translateX(30px)';
@@ -377,5 +439,533 @@ window.addEventListener('load', () => {
       });
       
     }, 300);
+  }
+});
+
+
+/**
+ * ===================================================================
+ * VIII. EDUCATION POPUP MODAL
+ *
+ * Purpose: Show detailed education information in a smooth popup modal
+ * when the user clicks on the education container.
+ * ===================================================================
+ */
+
+// Initialize education popup functionality when the page loads
+document.addEventListener("DOMContentLoaded", function() {
+  const educationContainer = document.getElementById('education-container');
+  const educationModal = document.getElementById('educationModal');
+  const closeBtn = document.querySelector('.education-close');
+  let isModalOpen = false;
+  let isAnimating = false; // Prevent rapid successive animations
+  let lastInteractionTime = 0; // Debounce mechanism
+
+  // Add click event to education container with improved mobile support
+  if (educationContainer) {
+    let touchStartTime = 0;
+    let touchMoved = false;
+    
+    // Touch events for mobile
+    educationContainer.addEventListener('touchstart', function(event) {
+      touchStartTime = Date.now();
+      touchMoved = false;
+    });
+    
+    educationContainer.addEventListener('touchmove', function(event) {
+      touchMoved = true;
+    });
+    
+    educationContainer.addEventListener('touchend', function(event) {
+      const touchDuration = Date.now() - touchStartTime;
+      
+      // Only trigger if it's a quick tap (not a long press) and no movement
+      if (!touchMoved && touchDuration < 500 && !isModalOpen && !isAnimating) {
+        event.preventDefault();
+        event.stopPropagation();
+        showEducationModal();
+      }
+    });
+    
+    // Click event for desktop
+    educationContainer.addEventListener('click', function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      if (!isModalOpen && !isAnimating) {
+        showEducationModal();
+      }
+    });
+  }
+
+  // Add multiple event listeners to close button for better reliability
+  if (closeBtn) {
+    let closeBtnTouchStartTime = 0;
+    let closeBtnTouchMoved = false;
+    
+    // Touch events for mobile with better handling
+    closeBtn.addEventListener('touchstart', function(event) {
+      closeBtnTouchStartTime = Date.now();
+      closeBtnTouchMoved = false;
+      event.stopPropagation();
+    }, { passive: false });
+    
+    closeBtn.addEventListener('touchmove', function(event) {
+      closeBtnTouchMoved = true;
+    }, { passive: true });
+    
+    closeBtn.addEventListener('touchend', function(event) {
+      const touchDuration = Date.now() - closeBtnTouchStartTime;
+      
+      // Only trigger if it's a quick tap and no movement
+      if (!closeBtnTouchMoved && touchDuration < 500 && isModalOpen && !isAnimating) {
+        event.preventDefault();
+        event.stopPropagation();
+        hideEducationModal();
+      }
+    }, { passive: false });
+    
+    // Click event for desktop
+    closeBtn.addEventListener('click', function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      if (isModalOpen && !isAnimating) {
+        hideEducationModal();
+      }
+    });
+
+    // Mouse down event as backup
+    closeBtn.addEventListener('mousedown', function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+    });
+  }
+
+  // Close modal when clicking outside the modal content with mobile support
+  if (educationModal) {
+    let modalTouchStartTime = 0;
+    let modalTouchMoved = false;
+    
+    // Touch events for modal background
+    educationModal.addEventListener('touchstart', function(event) {
+      if (event.target === educationModal) {
+        modalTouchStartTime = Date.now();
+        modalTouchMoved = false;
+      }
+    });
+    
+    educationModal.addEventListener('touchmove', function(event) {
+      modalTouchMoved = true;
+    });
+    
+    educationModal.addEventListener('touchend', function(event) {
+      const touchDuration = Date.now() - modalTouchStartTime;
+      
+      if (event.target === educationModal && !modalTouchMoved && 
+          touchDuration < 500 && isModalOpen) {
+        hideEducationModal();
+      }
+    });
+    
+    // Click event for desktop
+    educationModal.addEventListener('click', function(event) {
+      if (event.target === educationModal && isModalOpen) {
+        hideEducationModal();
+      }
+    });
+
+    // Prevent modal content clicks from closing modal
+    const modalContent = educationModal.querySelector('.education-modal-content');
+    if (modalContent) {
+      modalContent.addEventListener('click', function(event) {
+        event.stopPropagation();
+      });
+      
+      modalContent.addEventListener('touchend', function(event) {
+        event.stopPropagation();
+      });
+    }
+  }
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape' && isModalOpen) {
+      hideEducationModal();
+    }
+  });
+
+  /**
+   * Show the education modal with smooth animation from education container
+   */
+  function showEducationModal() {
+    const currentTime = Date.now();
+    
+    // Debounce mechanism - prevent rapid successive calls
+    if (currentTime - lastInteractionTime < 300) return;
+    if (!educationModal || !educationContainer || isModalOpen || isAnimating) return;
+    
+    lastInteractionTime = currentTime;
+    isModalOpen = true;
+    isAnimating = true;
+    
+    const modalContent = educationModal.querySelector('.education-modal-content');
+    if (!modalContent) return;
+    
+    // Reset any previous styles and ensure clean state
+    modalContent.style.transition = '';
+    modalContent.style.filter = 'none';
+    
+    // Set initial state - start from education container position
+    modalContent.style.position = 'fixed';
+    modalContent.style.left = '50%';
+    modalContent.style.top = '50%';
+    modalContent.style.transform = 'translate3d(-50%, -50%, 0) scale3d(0.05, 0.05, 1)';
+    modalContent.style.transformOrigin = 'center center';
+    modalContent.style.opacity = '0';
+    modalContent.style.transition = 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+    
+    // Show modal overlay and let CSS handle all background transitions
+    educationModal.classList.add('show');
+    
+    // Prevent body scrolling without layout shift
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = scrollbarWidth + 'px';
+    
+    // Trigger smooth animation after a brief moment
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        modalContent.style.transform = 'translate3d(-50%, -50%, 0) scale3d(1, 1, 1)';
+        modalContent.style.opacity = '1';
+        
+        // Mark animation as complete after transition
+        setTimeout(() => {
+          isAnimating = false;
+          
+          // Focus the close button for accessibility after animation
+          if (closeBtn) {
+            closeBtn.focus();
+          }
+        }, 400); // Match the transition duration
+      });
+    });
+  }
+
+  /**
+   * Hide the education modal with optimized blur and bouncy close animation
+   */
+  function hideEducationModal() {
+    const currentTime = Date.now();
+    
+    // Debounce mechanism - prevent rapid successive calls
+    if (currentTime - lastInteractionTime < 300) return;
+    if (!educationModal || !educationContainer || !isModalOpen || isAnimating) return;
+    
+    lastInteractionTime = currentTime;
+    isAnimating = true;
+    
+    const modalContent = educationModal.querySelector('.education-modal-content');
+    if (!modalContent) return;
+    
+    // Immediately set modal as closed to prevent double-trigger
+    isModalOpen = false;
+    
+    // Ultra-smooth single transition approach
+    modalContent.style.transition = 'all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    modalContent.style.filter = 'blur(8px)';
+    modalContent.style.transform = 'translate3d(-50%, -50%, 0) scale3d(0.9, 0.9, 1)';
+    modalContent.style.opacity = '0.3';
+    
+    // Start extremely slow, seamless background blur reduction
+    educationModal.style.transition = 'backdrop-filter 1.5s cubic-bezier(0.25, 0.1, 0.25, 1), background-color 1.5s cubic-bezier(0.25, 0.1, 0.25, 1)';
+    educationModal.style.backdropFilter = 'blur(0px)';
+    educationModal.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+    
+    // Modal bounce animation
+    setTimeout(() => {
+      modalContent.style.transition = 'transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.2s ease-out';
+      modalContent.style.transform = 'translate3d(-50%, -50%, 0) scale3d(0, 0, 1)';
+      modalContent.style.opacity = '0';
+      
+      // Final cleanup after smooth background transition completes
+      setTimeout(() => {
+        educationModal.classList.remove('show');
+        
+        // Re-enable body scrolling and remove padding compensation
+        document.body.style.overflow = 'auto';
+        document.body.style.paddingRight = '';
+        
+        // Reset modal state for next opening - faster reset for mobile
+        setTimeout(() => {
+          modalContent.style.transition = '';
+          modalContent.style.filter = 'none';
+          modalContent.style.transform = 'translate3d(-50%, -50%, 0) scale3d(0.05, 0.05, 1)';
+          modalContent.style.opacity = '0';
+          
+          // Reset overlay transition for next opening
+          educationModal.style.transition = '';
+          educationModal.style.backdropFilter = '';
+          educationModal.style.backgroundColor = '';
+          
+          // Force state reset for mobile compatibility
+          isModalOpen = false;
+          isAnimating = false; // Mark animation as complete
+        }, 50); // Reduced from 100ms for faster mobile response
+      }, 1620); // Wait for 1.5-second ultra-smooth transition
+    }, 150);
+  }
+});
+
+
+/**
+ * ===================================================================
+ * IX. EXPERIENCE POPUP MODAL
+ *
+ * Purpose: Show detailed experience information in a smooth popup modal
+ * when the user clicks on the experience container.
+ * ===================================================================
+ */
+
+// ===================================================================
+// ! EXPERIENCE MODAL FUNCTIONALITY
+// ===================================================================
+
+document.addEventListener('DOMContentLoaded', function() {
+  // DOM elements
+  const experienceContainer = document.getElementById('experience-container');
+  const experienceModal = document.getElementById('experienceModal');
+  const closeBtn = experienceModal?.querySelector('.experience-close');
+  
+  // Modal state management
+  let isModalOpen = false;
+  let isAnimating = false;
+  let lastInteractionTime = 0;
+  
+  // Touch state for mobile support
+  let modalTouchStartTime = 0;
+  let modalTouchMoved = false;
+  
+  // Check if elements exist before proceeding
+  if (!experienceContainer || !experienceModal || !closeBtn) {
+    console.warn('Experience modal elements not found');
+    return;
+  }
+
+  // ===============================================
+  // EXPERIENCE CONTAINER INTERACTION HANDLING
+  // ===============================================
+
+  // Handle education container click (desktop)
+  experienceContainer.addEventListener('click', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    // Prevent action if modal is open or animating
+    if (isModalOpen || isAnimating) return;
+    
+    showExperienceModal();
+  });
+
+  // Handle touch events for mobile
+  experienceContainer.addEventListener('touchstart', function(event) {
+    modalTouchStartTime = Date.now();
+    modalTouchMoved = false;
+  });
+
+  experienceContainer.addEventListener('touchmove', function(event) {
+    modalTouchMoved = true;
+  });
+
+  experienceContainer.addEventListener('touchend', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const touchDuration = Date.now() - modalTouchStartTime;
+    
+    // Prevent action if modal is open or animating, or if it was a long touch/drag
+    if (isModalOpen || isAnimating || modalTouchMoved || touchDuration > 500) return;
+    
+    showExperienceModal();
+  });
+
+  // ===============================================
+  // MODAL CLOSE INTERACTION HANDLING
+  // ===============================================
+
+  // Close button click
+  closeBtn.addEventListener('click', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    hideExperienceModal();
+  });
+
+  // Optimized modal overlay interaction handling
+  if (experienceModal) {
+    // Touch events for mobile modal closing
+    experienceModal.addEventListener('touchstart', function(event) {
+      modalTouchStartTime = Date.now();
+      modalTouchMoved = false;
+    });
+    
+    experienceModal.addEventListener('touchmove', function(event) {
+      modalTouchMoved = true;
+    });
+    
+    experienceModal.addEventListener('touchend', function(event) {
+      event.preventDefault();
+      
+      const touchDuration = Date.now() - modalTouchStartTime;
+      
+      if (event.target === experienceModal && !modalTouchMoved && 
+          touchDuration < 500 && isModalOpen) {
+        hideExperienceModal();
+      }
+    });
+    
+    // Click event for desktop
+    experienceModal.addEventListener('click', function(event) {
+      if (event.target === experienceModal && isModalOpen) {
+        hideExperienceModal();
+      }
+    });
+
+    // Prevent modal content clicks from closing modal
+    const modalContent = experienceModal.querySelector('.experience-modal-content');
+    if (modalContent) {
+      modalContent.addEventListener('click', function(event) {
+        event.stopPropagation();
+      });
+      
+      modalContent.addEventListener('touchend', function(event) {
+        event.stopPropagation();
+      });
+    }
+  }
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape' && isModalOpen) {
+      hideExperienceModal();
+    }
+  });
+
+  /**
+   * Show the experience modal with smooth animation from experience container
+   */
+  function showExperienceModal() {
+    const currentTime = Date.now();
+    
+    // Debounce mechanism - prevent rapid successive calls
+    if (currentTime - lastInteractionTime < 300) return;
+    if (!experienceModal || !experienceContainer || isModalOpen || isAnimating) return;
+    
+    lastInteractionTime = currentTime;
+    isModalOpen = true;
+    isAnimating = true;
+    
+    const modalContent = experienceModal.querySelector('.experience-modal-content');
+    if (!modalContent) return;
+    
+    // Reset any previous styles and ensure clean state
+    modalContent.style.transition = '';
+    modalContent.style.filter = 'none';
+    
+    // Set initial state - start from experience container position
+    modalContent.style.position = 'fixed';
+    modalContent.style.left = '50%';
+    modalContent.style.top = '50%';
+    modalContent.style.transform = 'translate3d(-50%, -50%, 0) scale3d(0.05, 0.05, 1)';
+    modalContent.style.transformOrigin = 'center center';
+    modalContent.style.opacity = '0';
+    modalContent.style.transition = 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+    
+    // Show modal overlay and let CSS handle all background transitions
+    experienceModal.classList.add('show');
+    
+    // Prevent body scrolling without layout shift
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = scrollbarWidth + 'px';
+    
+    // Trigger smooth animation after a brief moment
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        modalContent.style.transform = 'translate3d(-50%, -50%, 0) scale3d(1, 1, 1)';
+        modalContent.style.opacity = '1';
+        
+        // Mark animation as complete after transition
+        setTimeout(() => {
+          isAnimating = false;
+          
+          // Focus the close button for accessibility after animation
+          if (closeBtn) {
+            closeBtn.focus();
+          }
+        }, 400); // Match the transition duration
+      });
+    });
+  }
+
+  /**
+   * Hide the experience modal with optimized blur and bouncy close animation
+   */
+  function hideExperienceModal() {
+    const currentTime = Date.now();
+    
+    // Debounce mechanism - prevent rapid successive calls
+    if (currentTime - lastInteractionTime < 300) return;
+    if (!experienceModal || !experienceContainer || !isModalOpen || isAnimating) return;
+    
+    lastInteractionTime = currentTime;
+    isAnimating = true;
+    
+    const modalContent = experienceModal.querySelector('.experience-modal-content');
+    if (!modalContent) return;
+    
+    // Immediately set modal as closed to prevent double-trigger
+    isModalOpen = false;
+    
+    // Ultra-smooth single transition approach
+    modalContent.style.transition = 'all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    modalContent.style.filter = 'blur(8px)';
+    modalContent.style.transform = 'translate3d(-50%, -50%, 0) scale3d(0.9, 0.9, 1)';
+    modalContent.style.opacity = '0.3';
+    
+    // Start extremely slow, seamless background blur reduction
+    experienceModal.style.transition = 'backdrop-filter 1.5s cubic-bezier(0.25, 0.1, 0.25, 1), background-color 1.5s cubic-bezier(0.25, 0.1, 0.25, 1)';
+    experienceModal.style.backdropFilter = 'blur(0px)';
+    experienceModal.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+    
+    // Modal bounce animation
+    setTimeout(() => {
+      modalContent.style.transition = 'transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.2s ease-out';
+      modalContent.style.transform = 'translate3d(-50%, -50%, 0) scale3d(0, 0, 1)';
+      modalContent.style.opacity = '0';
+      
+      // Final cleanup after smooth background transition completes
+      setTimeout(() => {
+        experienceModal.classList.remove('show');
+        
+        // Re-enable body scrolling and remove padding compensation
+        document.body.style.overflow = 'auto';
+        document.body.style.paddingRight = '';
+        
+        // Reset modal state for next opening - faster reset for mobile
+        setTimeout(() => {
+          modalContent.style.transition = '';
+          modalContent.style.filter = 'none';
+          modalContent.style.transform = 'translate3d(-50%, -50%, 0) scale3d(0.05, 0.05, 1)';
+          modalContent.style.opacity = '0';
+          
+          // Reset overlay transition for next opening
+          experienceModal.style.transition = '';
+          experienceModal.style.backdropFilter = '';
+          experienceModal.style.backgroundColor = '';
+          
+          // Force state reset for mobile compatibility
+          isModalOpen = false;
+          isAnimating = false; // Mark animation as complete
+        }, 50); // Reduced from 100ms for faster mobile response
+      }, 1620); // Wait for 1.5-second ultra-smooth transition
+    }, 150);
   }
 });

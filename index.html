@@ -1,59 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- 
+    ===============================================================================
+    PORTFOLIO WEBSITE - SHYAM SUNDAR PAUL
+    ===============================================================================
+    
+    Purpose: Professional portfolio showcasing business analyst skills and projects
+    Author:  Shyam Sundar Paul
+    Date:    2025
+    
+    Structure Overview:
+    1. Document Head - Meta info, title, and stylesheets
+    2. Page Body - All visible content organized in semantic sections
+    3. JavaScript - Interactive functionality and animations
+    
+    ===============================================================================
+-->
+
 <head>
-    <!-- // META INFORMATION // -->
-    <!-- Defines the character set for the document. -->
+    <!-- 
+        ═══════════════════════════════════════════════════════════════════════════
+        DOCUMENT CONFIGURATION
+        ═══════════════════════════════════════════════════════════════════════════
+    -->
+    
+    <!-- Character encoding for proper text display -->
     <meta charset="UTF-8" />
-    <!-- Ensures the site displays correctly on modern browsers. -->
+    
+    <!-- Browser compatibility for older Internet Explorer versions -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- Configures the viewport for responsive design across all devices. -->
+    
+    <!-- Responsive design viewport configuration for mobile-first approach -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- // PAGE TITLE // -->
+    <!-- Page title displayed in browser tab -->
     <title>Shyam Portfolio</title>
 
-    <!-- // STYLESHEET LINKS // -->
-    <!-- Main styles for the entire site. -->
+    <!-- 
+        ═══════════════════════════════════════════════════════════════════════════
+        STYLESHEET DEPENDENCIES
+        ═══════════════════════════════════════════════════════════════════════════
+    -->
+    
+    <!-- Primary stylesheet containing base styles and layout -->
     <link rel="stylesheet" href="style.css" />
-    <!-- Responsive styles for different screen sizes. -->
+    
+    <!-- Responsive breakpoints and mobile adaptations -->
     <link rel="stylesheet" href="mediaqueries.css" />
+    
 </head>
 
 <body>
-    <!-- ================================================================= -->
-    <!-- ======================= PRELOADER ANIMATION ======================= -->
-    <!-- This is a simple loading animation that appears while the page assets are loading. -->
-    <!-- It's hidden by JavaScript once the page is fully loaded. -->
-    <!-- ================================================================= -->
+    <!-- 
+        ███████████████████████████████████████████████████████████████████████████
+        ███                           PAGE CONTENT BEGINS                       ███
+        ███████████████████████████████████████████████████████████████████████████
+    -->
+
+    <!-- 
+        ═══════════════════════════════════════════════════════════════════════════
+        SECTION 1: LOADING ANIMATION
+        ═══════════════════════════════════════════════════════════════════════════
+        
+        This preloader creates a smooth user experience by showing an animated
+        loading screen while page assets are being downloaded. Once everything
+        is ready, JavaScript will hide this element and reveal the main content.
+    -->
     <div id="preloader" class="gooey">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+        <span class="dot"></span>
+        <div class="dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </div>
 
-    <!-- ================================================================= -->
-    <!-- ======================== MAIN PAGE CONTENT ======================== -->
-    <!-- This container wraps all the visible content of the page and is revealed after the preloader finishes. -->
-    <!-- ================================================================= -->
+    <!-- 
+        ═══════════════════════════════════════════════════════════════════════════
+        SECTION 2: MAIN CONTENT WRAPPER
+        ═══════════════════════════════════════════════════════════════════════════
+        
+        This container holds all visible page content and is initially hidden
+        during the preloader phase. It ensures a clean transition from loading
+        to the actual portfolio content.
+    -->
     <div id="main-content">
 
-        <!-- ============================================================= -->
-        <!-- =================== DESKTOP NAVIGATION ====================== -->
-        <!-- This navigation bar is visible only on larger screens (desktops and laptops). -->
-        <!-- ============================================================= -->
+        <!-- 
+            ───────────────────────────────────────────────────────────────────────
+            NAVIGATION SYSTEM
+            ───────────────────────────────────────────────────────────────────────
+        -->
+
+        <!-- 
+            ┌─────────────────────────────────────────────────────────────────────┐
+            │  DESKTOP NAVIGATION BAR                                             │
+            │  Visible on tablets, laptops, and desktop screens                   │
+            └─────────────────────────────────────────────────────────────────────┘
+        -->
         <nav id="desktop-nav">
+            <!-- Brand identity section -->
             <div class="logo">Shyam Sundar Paul</div>
+            
+            <!-- Navigation menu and theme controls -->
             <div>
                 <ul class="nav-links">
+                    <!-- Core navigation items -->
                     <li><a href="#about">About</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    
+                    <!-- Theme toggle control for desktop users -->
                     <li>
-                        <!-- Theme Toggle Button -->
                         <span class="theme-toggle-wrapper">
                             <img id="theme-toggle-desktop" 
                                  class="icon no-download" 
@@ -68,27 +128,34 @@
             </div>
         </nav>
 
-        <!-- ============================================================= -->
-        <!-- =================== HAMBURGER NAVIGATION ==================== -->
-        <!-- This navigation appears as a hamburger menu on smaller screens (tablets and mobile). -->
-        <!-- ============================================================= -->
+        <!-- 
+            ┌─────────────────────────────────────────────────────────────────────┐
+            │  MOBILE NAVIGATION SYSTEM                                           │
+            │  Responsive hamburger menu for smartphones and small tablets        │
+            └─────────────────────────────────────────────────────────────────────┘
+        -->
         <nav id="hamburger-nav">
+            <!-- Brand identity for mobile -->
             <div class="logo">Shyam Sundar Paul</div>
+            
+            <!-- Collapsible menu system -->
             <div class="hamburger-menu">
-                <!-- The three-line icon that the user clicks. -->
+                <!-- Three-line hamburger icon (click trigger) -->
                 <div class="hamburger-icon" onclick="toggleMenu()">
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
-                <!-- The links that appear when the menu is opened. -->
+                
+                <!-- Expandable navigation menu -->
                 <div class="menu-links">
                     <li><a href="#about" onclick="toggleMenu()">About</a></li>
                     <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
                     <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
                     <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+                    
+                    <!-- Theme toggle for mobile users -->
                     <li>
-                        <!-- Theme Toggle Button for Mobile -->
                         <span class="theme-toggle-wrapper">
                             <img id="theme-toggle-mobile" 
                                  class="icon no-download" 
@@ -103,24 +170,46 @@
             </div>
         </nav>
 
-        <!-- ============================================================= -->
-        <!-- ====================== PROFILE SECTION ====================== -->
-        <!-- The main introductory section with profile picture, name, role, and social links. -->
-        <!-- ============================================================= -->
+        <!-- 
+            ───────────────────────────────────────────────────────────────────────
+            MAIN CONTENT SECTIONS
+            ───────────────────────────────────────────────────────────────────────
+        -->
+
+        <!-- 
+            ┌─────────────────────────────────────────────────────────────────────┐
+            │  HERO SECTION - FIRST IMPRESSION                                    │
+            │                                                                     │
+            │  This is the landing area where visitors get their first glimpse    │
+            │  of Shyam's professional identity, including profile image,         │
+            │  animated role text, and primary call-to-action buttons.            │
+            └─────────────────────────────────────────────────────────────────────┘
+        -->
         <section id="profile">
+            <!-- Professional headshot container -->
             <div class="section__pic-container">
-                <img src="./assets/profile-pic.png" alt="Shyam's profile picture" class="no-download" onerror="this.onerror=null;this.src='https://placehold.co/400x400/f0f0f0/333?text=Profile+Pic';" />
+                <img src="./assets/profile-pic.png" 
+                     alt="Shyam's profile picture" 
+                     class="no-download" 
+                     onerror="this.onerror=null;this.src='https://placehold.co/400x400/f0f0f0/333?text=Profile+Pic';" />
             </div>
+            
+            <!-- Hero text and interactive elements -->
             <div class="section__text">
+                <!-- Greeting message -->
                 <p class="section__text__p1">Hello, I'm</p>
+                
+                <!-- Primary name heading -->
                 <h1 class="title">Shyam Sundar Paul</h1>
-                <!-- The container for the animated role text (e.g., "Business Analyst"). -->
+                
+                <!-- Dynamic role display with animation -->
                 <p class="section__text__p2">
                     <span id="role-text-container">
                         <span id="role-text">Business Analyst</span>
                     </span>
                 </p>
-                <!-- Buttons for downloading CV and contacting. -->
+                
+                <!-- Primary action buttons -->
                 <div class="btn-container">
                     <button class="btn btn-color-2" onclick="window.open('./assets/resume-example.pdf')">
                         Download CV
@@ -129,45 +218,83 @@
                         Contact Info
                     </button>
                 </div>
-                <!-- Links to social media profiles. -->
+                
+                <!-- Social media connection links -->
                 <div id="socials-container">
                     <a href="https://www.linkedin.com/in/shyam-sundar-paul-51a928216/" target="_blank" class="icon-link">
-                        <img data-light-src="./assets/linkedin_light.png" data-dark-src="./assets/linkedin_dark.png" src="./assets/linkedin_light.png" alt="My LinkedIn profile" class="icon no-download" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=LI';" />
+                        <img data-light-src="./assets/linkedin_light.png" 
+                             data-dark-src="./assets/linkedin_dark.png" 
+                             src="./assets/linkedin_light.png" 
+                             alt="My LinkedIn profile" 
+                             class="icon no-download" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=LI';" />
                     </a>
                     <a href="https://github.com/Shyam2143" target="_blank" class="icon-link">
-                        <img data-light-src="./assets/github_light.png" data-dark-src="./assets/github_dark.png" src="./assets/github_light.png" alt="My Github profile" class="icon no-download" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=GH';" />
+                        <img data-light-src="./assets/github_light.png" 
+                             data-dark-src="./assets/github_dark.png" 
+                             src="./assets/github_light.png" 
+                             alt="My Github profile" 
+                             class="icon no-download" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=GH';" />
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- ============================================================= -->
-        <!-- ======================= ABOUT SECTION ======================= -->
-        <!-- Contains information about experience, education, and a descriptive paragraph. -->
-        <!-- 'scroll-reveal' class is a hook for the JavaScript fade-in animation. -->
-        <!-- ============================================================= -->
+        <!-- 
+            ┌─────────────────────────────────────────────────────────────────────┐
+            │  ABOUT SECTION - PERSONAL & PROFESSIONAL OVERVIEW                   │
+            │                                                                     │
+            │  Features scroll-reveal animation, educational background,          │
+            │  experience summary, and detailed personal statement about          │
+            │  Shyam's unique value proposition in business analytics.            │
+            └─────────────────────────────────────────────────────────────────────┘
+        -->
         <section id="about" class="scroll-reveal">
+            <!-- Section introduction -->
             <p class="section__text__p1">Get To Know More</p>
             <h1 class="title">About Me</h1>
+            
+            <!-- Main content layout -->
             <div class="section-container">
+                <!-- Secondary profile image -->
                 <div class="section__pic-container">
-                    <img src="./assets/about-pic.png" alt="Profile picture" class="about-pic no-download" onerror="this.onerror=null;this.src='https://placehold.co/400x400/f0f0f0/333?text=About+Pic';" />
+                    <img src="./assets/about-pic.png" 
+                         alt="Profile picture" 
+                         class="about-pic no-download" 
+                         onerror="this.onerror=null;this.src='https://placehold.co/400x400/f0f0f0/333?text=About+Pic';" />
                 </div>
+                
+                <!-- Professional summary cards and description -->
                 <div class="about-details-container">
-                    <!-- Cards for Experience and Education. -->
+                    <!-- Quick stats cards -->
                     <div class="about-containers">
-                        <div class="details-container">
-                            <img data-light-src="./assets/experience_light.png" data-dark-src="./assets/experience_dark.png" src="./assets/experience_light.png" alt="Experience icon" class="icon no-download" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=Exp';" />
+                        <!-- Experience summary card (interactive) -->
+                        <div class="details-container experience-clickable" id="experience-container">
+                            <img data-light-src="./assets/experience_light.png" 
+                                 data-dark-src="./assets/experience_dark.png" 
+                                 src="./assets/experience_light.png" 
+                                 alt="Experience icon" 
+                                 class="icon no-download" 
+                                 onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=Exp';" />
                             <h3>Experience</h3>
                             <p>6+ Months <br />Business Analyst Intern</p>
                         </div>
-                        <div class="details-container">
-                            <img data-light-src="./assets/education_light.png" data-dark-src="./assets/education_dark.png" src="./assets/education_light.png" alt="Education icon" class="icon no-download" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=Edu';" />
+                        
+                        <!-- Education summary card (interactive) -->
+                        <div class="details-container education-clickable" id="education-container">
+                            <img data-light-src="./assets/education_light.png" 
+                                 data-dark-src="./assets/education_dark.png" 
+                                 src="./assets/education_light.png" 
+                                 alt="Education icon" 
+                                 class="icon no-download" 
+                                 onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=Edu';" />
                             <h3>Education</h3>
                             <p>MBA. Supply Chain Analytics <br />MS. Computer Science</p>
                         </div>
                     </div>
-                    <!-- The main "About Me" text block. -->
+                    
+                    <!-- Detailed professional narrative -->
                     <div class="text-container">
                         <p>
                             I blend advanced analytics with business acumen to uncover the
@@ -181,63 +308,124 @@
                     </div>
                 </div>
             </div>
-            <!-- Arrow icon to guide the user to the next section. -->
+            
+            <!-- Navigation helper to next section -->
             <a href="./#experience" class="icon-link arrow">
-                <img data-light-src="./assets/arrow_light.png" data-dark-src="./assets/arrow_dark.png" src="./assets/arrow_light.png" alt="Arrow icon pointing down to next section" class="icon no-download" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=V';" />
+                <img data-light-src="./assets/arrow_light.png" 
+                     data-dark-src="./assets/arrow_dark.png" 
+                     src="./assets/arrow_light.png" 
+                     alt="Arrow icon pointing down to next section" 
+                     class="icon no-download" 
+                     onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=V';" />
             </a>
         </section>
 
-        <!-- ============================================================= -->
-        <!-- ==================== EXPERIENCE SECTION ===================== -->
-        <!-- Displays technical skills and business competencies. -->
-        <!-- ============================================================= -->
+        <!-- 
+            ┌─────────────────────────────────────────────────────────────────────┐
+            │  SKILLS & EXPERIENCE SHOWCASE                                       │
+            │                                                                     │
+            │  Two-column layout displaying technical proficiencies and           │
+            │  business competencies. Each skill includes proficiency level       │
+            │  and visual confirmation through checkmark icons.                   │
+            └─────────────────────────────────────────────────────────────────────┘
+        -->
         <section id="experience" class="scroll-reveal">
+            <!-- Section introduction -->
             <p class="section__text__p1">Explore My</p>
             <h1 class="title">Experience</h1>
+            
+            <!-- Skills showcase container -->
             <div class="experience-details-container">
                 <div class="about-containers">
-                    <!-- Data Analyst Skills -->
+                    
+                    <!-- 
+                        ┌─────────────────────────────────────────────────────┐
+                        │  TECHNICAL SKILLS COLUMN                            │
+                        │  Data analysis and programming proficiencies        │
+                        └─────────────────────────────────────────────────────┘
+                    -->
                     <div class="details-container">
                         <h2 class="experience-sub-title">Data Analyst</h2>
                         <div class="article-container">
+                            
+                            <!-- Python programming expertise -->
                             <article>
-                                <img data-light-src="./assets/checkmark_light.png" data-dark-src="./assets/checkmark_dark.png" src="./assets/checkmark_light.png" alt="Experience icon" class="icon no-download" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
+                                <img data-light-src="./assets/checkmark_light.png" 
+                                     data-dark-src="./assets/checkmark_dark.png" 
+                                     src="./assets/checkmark_light.png" 
+                                     alt="Experience icon" 
+                                     class="icon no-download" 
+                                     onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
                                 <div>
                                     <h3>Python</h3>
                                     <p>Experienced</p>
                                 </div>
                             </article>
-                            <!-- ... other skills ... -->
+                            
+                            <!-- Database query proficiency -->
                             <article>
-                                <img data-light-src="./assets/checkmark_light.png" data-dark-src="./assets/checkmark_dark.png" src="./assets/checkmark_light.png" alt="Experience icon" class="icon no-download" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
+                                <img data-light-src="./assets/checkmark_light.png" 
+                                     data-dark-src="./assets/checkmark_dark.png" 
+                                     src="./assets/checkmark_light.png" 
+                                     alt="Experience icon" 
+                                     class="icon no-download" 
+                                     onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
                                 <div>
                                     <h3>SQL</h3>
                                     <p>Experienced</p>
                                 </div>
                             </article>
+                            
+                            <!-- Statistical computing with R -->
                             <article>
-                                <img data-light-src="./assets/checkmark_light.png" data-dark-src="./assets/checkmark_dark.png" src="./assets/checkmark_light.png" alt="Experience icon" class="icon no-download" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
+                                <img data-light-src="./assets/checkmark_light.png" 
+                                     data-dark-src="./assets/checkmark_dark.png" 
+                                     src="./assets/checkmark_light.png" 
+                                     alt="Experience icon" 
+                                     class="icon no-download" 
+                                     onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
                                 <div>
                                     <h3>R</h3>
                                     <p>Intermediate</p>
                                 </div>
                             </article>
+                            
+                            <!-- Web markup language -->
                             <article>
-                                <img data-light-src="./assets/checkmark_light.png" data-dark-src="./assets/checkmark_dark.png" src="./assets/checkmark_light.png" alt="Experience icon" class="icon no-download" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
+                                <img data-light-src="./assets/checkmark_light.png" 
+                                     data-dark-src="./assets/checkmark_dark.png" 
+                                     src="./assets/checkmark_light.png" 
+                                     alt="Experience icon" 
+                                     class="icon no-download" 
+                                     onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
                                 <div>
                                     <h3>HTML</h3>
                                     <p>Intermediate</p>
                                 </div>
                             </article>
+                            
+                            <!-- Data manipulation library -->
                             <article>
-                                <img data-light-src="./assets/checkmark_light.png" data-dark-src="./assets/checkmark_dark.png" src="./assets/checkmark_light.png" alt="Experience icon" class="icon no-download" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
+                                <img data-light-src="./assets/checkmark_light.png" 
+                                     data-dark-src="./assets/checkmark_dark.png" 
+                                     src="./assets/checkmark_light.png" 
+                                     alt="Experience icon" 
+                                     class="icon no-download" 
+                                     onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
                                 <div>
                                     <h3>Pandas</h3>
                                     <p>Experienced</p>
                                 </div>
                             </article>
+                            
+                            <!-- Numerical computing library -->
                             <article>
-                                <img data-light-src="./assets/checkmark_light.png" data-dark-src="./assets/checkmark_dark.png" src="./assets/checkmark_light.png" alt="Experience icon" class="icon no-download" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
+                                <img data-light-src="./assets/checkmark_light.png" 
+                                     data-dark-src="./assets/checkmark_dark.png" 
+                                     src="./assets/checkmark_light.png" 
+                                     alt="Experience icon" 
+                                     class="icon no-download" 
+                                     onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
                                 <div>
                                     <h3>NumPy</h3>
                                     <p>Experienced</p>
@@ -245,34 +433,67 @@
                             </article>
                         </div>
                     </div>
-                    <!-- Business Competencies -->
+                    
+                    <!-- 
+                        ┌─────────────────────────────────────────────────────┐
+                        │  BUSINESS COMPETENCIES COLUMN                       │
+                        │  Strategic and analytical business skills           │
+                        └─────────────────────────────────────────────────────┘
+                    -->
                     <div class="details-container">
                         <h2 class="experience-sub-title">Business Competencies</h2>
                         <div class="article-container">
-                             <article>
-                                <img data-light-src="./assets/checkmark_light.png" data-dark-src="./assets/checkmark_dark.png" src="./assets/checkmark_light.png" alt="Experience icon" class="icon no-download" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
+                            
+                            <!-- Mathematical modeling skills -->
+                            <article>
+                                <img data-light-src="./assets/checkmark_light.png" 
+                                     data-dark-src="./assets/checkmark_dark.png" 
+                                     src="./assets/checkmark_light.png" 
+                                     alt="Experience icon" 
+                                     class="icon no-download" 
+                                     onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
                                 <div>
                                     <h3>Statistical Modeling</h3>
                                     <p>Basic</p>
                                 </div>
                             </article>
-                            <!-- ... other competencies ... -->
+                            
+                            <!-- Market research expertise -->
                             <article>
-                                <img data-light-src="./assets/checkmark_light.png" data-dark-src="./assets/checkmark_dark.png" src="./assets/checkmark_light.png" alt="Experience icon" class="icon no-download" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
+                                <img data-light-src="./assets/checkmark_light.png" 
+                                     data-dark-src="./assets/checkmark_dark.png" 
+                                     src="./assets/checkmark_light.png" 
+                                     alt="Experience icon" 
+                                     class="icon no-download" 
+                                     onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
                                 <div>
                                     <h3>Consumer Behavior Analysis</h3>
                                     <p>Intermediate</p>
                                 </div>
                             </article>
+                            
+                            <!-- Operations and logistics analysis -->
                             <article>
-                                <img data-light-src="./assets/checkmark_light.png" data-dark-src="./assets/checkmark_dark.png" src="./assets/checkmark_light.png" alt="Experience icon" class="icon no-download" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
+                                <img data-light-src="./assets/checkmark_light.png" 
+                                     data-dark-src="./assets/checkmark_dark.png" 
+                                     src="./assets/checkmark_light.png" 
+                                     alt="Experience icon" 
+                                     class="icon no-download" 
+                                     onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
                                 <div>
                                     <h3>Supply Chain Analytics</h3>
                                     <p>Intermediate</p>
                                 </div>
                             </article>
-                             <article>
-                                <img data-light-src="./assets/checkmark_light.png" data-dark-src="./assets/checkmark_dark.png" src="./assets/checkmark_light.png" alt="Experience icon" class="icon no-download" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
+                            
+                            <!-- Presentation and communication -->
+                            <article>
+                                <img data-light-src="./assets/checkmark_light.png" 
+                                     data-dark-src="./assets/checkmark_dark.png" 
+                                     src="./assets/checkmark_light.png" 
+                                     alt="Experience icon" 
+                                     class="icon no-download" 
+                                     onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=OK';" />
                                 <div>
                                     <h3>PowerPoint</h3>
                                     <p>Experienced</p>
@@ -282,100 +503,197 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Navigation to projects section -->
             <a href="./#projects" class="icon-link arrow">
-                <img data-light-src="./assets/arrow_light.png" data-dark-src="./assets/arrow_dark.png" src="./assets/arrow_light.png" alt="Arrow icon pointing down to next section" class="icon no-download" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=V';" />
+                <img data-light-src="./assets/arrow_light.png" 
+                     data-dark-src="./assets/arrow_dark.png" 
+                     src="./assets/arrow_light.png" 
+                     alt="Arrow icon pointing down to next section" 
+                     class="icon no-download" 
+                     onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=V';" />
             </a>
         </section>
 
-        <!-- ============================================================= -->
-        <!-- ====================== PROJECTS SECTION ===================== -->
-        <!-- A gallery of recent projects with images and links. -->
-        <!-- ============================================================= -->
+        <!-- 
+            ┌─────────────────────────────────────────────────────────────────────┐
+            │  PROJECT PORTFOLIO GALLERY                                          │
+            │                                                                     │
+            │  Showcase of recent analytical projects with preview images,        │
+            │  descriptive titles, and direct links to source code and live       │
+            │  demonstrations. Each project represents real-world applications.   │
+            └─────────────────────────────────────────────────────────────────────┘
+        -->
         <section id="projects" class="scroll-reveal">
+            <!-- Section introduction -->
             <p class="section__text__p1">Browse My Recent</p>
             <h1 class="title">Projects</h1>
+            
+            <!-- Projects showcase grid -->
             <div class="experience-details-container">
                 <div class="about-containers">
-                    <!-- Project 1 -->
+                    
+                    <!-- 
+                        ┌─────────────────────────────────────────────────────┐
+                        │  PROJECT 1: UBER DATA ANALYSIS                      │
+                        │  Comprehensive exploratory data analysis            │
+                        └─────────────────────────────────────────────────────┘
+                    -->
                     <div class="details-container color-container">
+                        <!-- Project preview image -->
                         <div class="article-container">
-                            <img src="./assets/project-1.png" alt="Project 1" class="project-img no-download" onerror="this.onerror=null;this.src='https://placehold.co/300x300/f0f0f0/333?text=Project+1';" />
+                            <img src="./assets/project-1.png" 
+                                 alt="Project 1" 
+                                 class="project-img no-download" 
+                                 onerror="this.onerror=null;this.src='https://placehold.co/300x300/f0f0f0/333?text=Project+1';" />
                         </div>
+                        
+                        <!-- Project title -->
                         <h2 class="experience-sub-title project-title">Comprehensive Uber Data EDA</h2>
+                        
+                        <!-- Action buttons for source code and live demo -->
                         <div class="btn-container">
-                            <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/Shyam2143/uber-demand-gap-analysis.git'">
+                            <button class="btn btn-color-2 project-btn" 
+                                    onclick="location.href='https://github.com/Shyam2143/uber-demand-gap-analysis.git'">
                                 Github
                             </button>
-                            <button class="btn btn-color-2 project-btn" onclick="location.href='https://drive.google.com/file/d/1z-42Bj67dMl3JTJcn9yUesX1DvQPvqFT/view?usp=sharing'">
+                            <button class="btn btn-color-2 project-btn" 
+                                    onclick="location.href='https://drive.google.com/file/d/1z-42Bj67dMl3JTJcn9yUesX1DvQPvqFT/view?usp=sharing'">
                                 Drive
                             </button>
                         </div>
                     </div>
-                    <!-- Project 2 -->
+                    
+                    <!-- 
+                        ┌─────────────────────────────────────────────────────┐
+                        │  PROJECT 2: CONSUMER BEHAVIOR STUDY                 │
+                        │  Purchase pattern analysis and insights             │
+                        └─────────────────────────────────────────────────────┘
+                    -->
                     <div class="details-container color-container">
+                        <!-- Project preview image -->
                         <div class="article-container">
-                            <img src="./assets/project-2.png" alt="Project 2" class="project-img no-download" onerror="this.onerror=null;this.src='https://placehold.co/300x300/f0f0f0/333?text=Project+2';" />
+                            <img src="./assets/project-2.png" 
+                                 alt="Project 2" 
+                                 class="project-img no-download" 
+                                 onerror="this.onerror=null;this.src='https://placehold.co/300x300/f0f0f0/333?text=Project+2';" />
                         </div>
+                        
+                        <!-- Project title -->
                         <h2 class="experience-sub-title project-title">Purchase Behavior Study</h2>
+                        
+                        <!-- Action buttons for source code and live demo -->
                         <div class="btn-container">
-                            <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/'">
+                            <button class="btn btn-color-2 project-btn" 
+                                    onclick="location.href='https://github.com/'">
                                 Github
                             </button>
-                            <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/'">
+                            <button class="btn btn-color-2 project-btn" 
+                                    onclick="location.href='https://github.com/'">
                                 Drive
                             </button>
                         </div>
                     </div>
-                    <!-- Project 3 -->
+                    
+                    <!-- 
+                        ┌─────────────────────────────────────────────────────┐
+                        │  PROJECT 3: STREAMING PLATFORM ANALYSIS             │
+                        │  Amazon Prime Video content exploration             │
+                        └─────────────────────────────────────────────────────┘
+                    -->
                     <div class="details-container color-container">
+                        <!-- Project preview image -->
                         <div class="article-container">
-                            <img src="./assets/project-3.png" alt="Project 3" class="project-img no-download" onerror="this.onerror=null;this.src='https://placehold.co/300x300/f0f0f0/333?text=Project+3';" />
+                            <img src="./assets/project-3.png" 
+                                 alt="Project 3" 
+                                 class="project-img no-download" 
+                                 onerror="this.onerror=null;this.src='https://placehold.co/300x300/f0f0f0/333?text=Project+3';" />
                         </div>
+                        
+                        <!-- Project title -->
                         <h2 class="experience-sub-title project-title">Amazon Prime Video EDA</h2>
+                        
+                        <!-- Action buttons for source code and live demo -->
                         <div class="btn-container">
-                            <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/Shyam2143/EDA_Prime.git'">
+                            <button class="btn btn-color-2 project-btn" 
+                                    onclick="location.href='https://github.com/Shyam2143/EDA_Prime.git'">
                                 Github
                             </button>
-                            <button class="btn btn-color-2 project-btn" onclick="location.href='https://colab.research.google.com/drive/15nN_6RjTnAmjSu9NqrxUsrAXpRf3J6WI?usp=sharing'">
+                            <button class="btn btn-color-2 project-btn" 
+                                    onclick="location.href='https://colab.research.google.com/drive/15nN_6RjTnAmjSu9NqrxUsrAXpRf3J6WI?usp=sharing'">
                                 Drive
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-             <a href="./#contact" class="icon-link arrow">
-                <img data-light-src="./assets/arrow_light.png" data-dark-src="./assets/arrow_dark.png" src="./assets/arrow_light.png" alt="Arrow icon pointing down to next section" class="icon no-download" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=V';" />
+            
+            <!-- Navigation to contact section -->
+            <a href="./#contact" class="icon-link arrow">
+                <img data-light-src="./assets/arrow_light.png" 
+                     data-dark-src="./assets/arrow_dark.png" 
+                     src="./assets/arrow_light.png" 
+                     alt="Arrow icon pointing down to next section" 
+                     class="icon no-download" 
+                     onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=V';" />
             </a>
         </section>
 
-        <!-- ============================================================= -->
-        <!-- ====================== CONTACT SECTION ====================== -->
-        <!-- Provides contact information like email and LinkedIn. -->
-        <!-- ============================================================= -->
+        <!-- 
+            ┌─────────────────────────────────────────────────────────────────────┐
+            │  CONTACT INFORMATION CENTER                                         │
+            │                                                                     │
+            │  Professional contact methods with direct links to email and        │
+            │  LinkedIn profile. Provides easy access for potential clients       │
+            │  and collaborators to initiate professional conversations.          │
+            └─────────────────────────────────────────────────────────────────────┘
+        -->
         <section id="contact">
+            <!-- Section introduction -->
             <p class="section__text__p1">Get in Touch</p>
             <h1 class="title">Contact Me</h1>
+            
+            <!-- Contact methods container -->
             <div class="contact-info-upper-container">
+                
+                <!-- Primary email contact -->
                 <div class="contact-info-container">
                     <a href="mailto:Shyam@dataanalysts.in" class="icon-link">
-                        <img data-light-src="./assets/email_light.png" data-dark-src="./assets/email_dark.png" src="./assets/email_light.png" alt="Email icon" class="icon contact-icon email-icon no-download" onerror="this.onerror=null;this.src='https://placehold.co/40x40/f0f0f0/333?text=@';" />
+                        <img data-light-src="./assets/email_light.png" 
+                             data-dark-src="./assets/email_dark.png" 
+                             src="./assets/email_light.png" 
+                             alt="Email icon" 
+                             class="icon contact-icon email-icon no-download" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/40x40/f0f0f0/333?text=@';" />
                     </a>
                     <p><a href="mailto:Shyam@dataanalysts.in">Shyam@dataanalysts.in</a></p>
                 </div>
+                
+                <!-- Professional LinkedIn profile -->
                 <div class="contact-info-container">
                     <a href="https://www.linkedin.com/in/shyam-sundar-paul-51a928216/" target="_blank" class="icon-link">
-                         <img data-light-src="./assets/linkedin_light.png" data-dark-src="./assets/linkedin_dark.png" src="./assets/linkedin_light.png" alt="LinkedIn icon" class="icon contact-icon no-download" onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=LI';" />
+                        <img data-light-src="./assets/linkedin_light.png" 
+                             data-dark-src="./assets/linkedin_dark.png" 
+                             src="./assets/linkedin_light.png" 
+                             alt="LinkedIn icon" 
+                             class="icon contact-icon no-download" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/32x32/f0f0f0/333?text=LI';" />
                     </a>
                     <p><a href="https://www.linkedin.com/in/shyam-sundar-paul-51a928216/">LinkedIn</a></p>
                 </div>
             </div>
         </section>
 
-        <!-- ============================================================= -->
-        <!-- ========================== FOOTER =========================== -->
-        <!-- The final section of the page with navigation links and copyright info. -->
-        <!-- ============================================================= -->
+        <!-- 
+            ┌─────────────────────────────────────────────────────────────────────┐
+            │  FOOTER NAVIGATION & COPYRIGHT                                      │
+            │                                                                     │
+            │  Duplicate navigation for easy access from bottom of page plus      │
+            │  copyright notice for intellectual property protection.             │
+            └─────────────────────────────────────────────────────────────────────┘
+        -->
         <footer>
+            <!-- Secondary navigation menu -->
             <nav>
                 <div class="nav-links-container">
                     <ul class="nav-links">
@@ -386,13 +704,113 @@
                     </ul>
                 </div>
             </nav>
+            
+            <!-- Copyright and ownership statement -->
             <p>Copyright &#169; 2025 Shyam S. Paul. All Rights Reserved.</p>
         </footer>
 
-    </div> <!-- End of #main-content -->
+    </div> <!-- End of main-content wrapper -->
 
-    <!-- // JAVASCRIPT FILE // -->
-    <!-- This script handles all the interactive elements of the site. -->
+    <!-- 
+        ═══════════════════════════════════════════════════════════════════════════
+        INTERACTIVE MODAL COMPONENTS
+        ═══════════════════════════════════════════════════════════════════════════
+        
+        These popup overlays provide detailed information when users click on
+        the education and experience summary cards in the About section.
+        They feature smooth animations and iOS-style close buttons.
+    -->
+
+    <!-- 
+        ┌─────────────────────────────────────────────────────────────────────┐
+        │  EDUCATION DETAILS MODAL                                            │
+        │  Interactive popup displaying comprehensive educational background  │
+        └─────────────────────────────────────────────────────────────────────┘
+    -->
+    <div id="educationModal" class="education-modal">
+        <div class="education-modal-content">
+            <!-- iOS-style close button with liquid glass effect -->
+            <button class="education-close ios-liquid-glass" aria-label="Close education details">
+                <div class="close-icon-container">
+                    <svg class="close-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="liquid-glass-overlay"></div>
+            </button>
+            
+            <!-- Modal content header -->
+            <h2>Education Details</h2>
+            
+            <!-- Chronological education list -->
+            <ul class="education-details">
+                <li>
+                    <span class="education-degree">MS in Computer Science (AI & ML)</span>
+                    <span class="education-year">2026</span>
+                    <span class="education-institution">Woolf University</span>
+                </li>
+                <li>
+                    <span class="education-degree">MBA (Supply Chain Analytics)</span>
+                    <span class="education-year">2026</span>
+                    <span class="education-institution">JIS University</span>
+                </li>
+                <li>
+                    <span class="education-degree">BBA</span>
+                    <span class="education-year">2023</span>
+                    <span class="education-institution">MAKAUT, WB</span>
+                    <span class="education-cgpa">CGPA: 8.46</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 
+        ┌─────────────────────────────────────────────────────────────────────┐
+        │  PROFESSIONAL EXPERIENCE MODAL                                      │
+        │  Interactive popup showing detailed work history and roles          │
+        └─────────────────────────────────────────────────────────────────────┘
+    -->
+    <div id="experienceModal" class="experience-modal">
+        <div class="experience-modal-content">
+            <!-- iOS-style close button with liquid glass effect -->
+            <button class="experience-close ios-liquid-glass" aria-label="Close experience details">
+                <div class="close-icon-container">
+                    <svg class="close-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="liquid-glass-overlay"></div>
+            </button>
+            
+            <!-- Modal content header -->
+            <h2>Experience Details</h2>
+            
+            <!-- Professional experience timeline -->
+            <ul class="experience-details">
+                <li>
+                    <span class="experience-company">Labmentix Edtech Pvt. Ltd.</span>
+                    <span class="experience-period">Jun 2026 - Dec 2026</span>
+                    <span class="experience-role">Business Analyst Intern</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 
+        ═══════════════════════════════════════════════════════════════════════════
+        JAVASCRIPT ENGINE
+        ═══════════════════════════════════════════════════════════════════════════
+        
+        This script file contains all interactive functionality including:
+        - Preloader management and smooth transitions
+        - Theme toggle system (light/dark mode)
+        - Smooth scrolling navigation
+        - Modal popup controls
+        - Hamburger menu functionality
+        - Scroll-reveal animations
+        - Dynamic text animations
+    -->
     <script src="script.js"></script>
+
 </body>
 </html>
